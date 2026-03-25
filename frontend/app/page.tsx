@@ -1,65 +1,197 @@
-import Image from "next/image";
+import { fetchAPI, getStrapiMedia } from '@/lib/strapi';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Home() {
+export const revalidate = 60;
+
+interface StrapiImage {
+  url: string;
+}
+
+interface Article {
+  id: number;
+  Title: string;
+  Content: string;
+  createdAt: string;
+  CoverImage?: StrapiImage;
+}
+
+interface Match {
+  id: number;
+  Opponent: string;
+  Date: string;
+  IsHomeGame: boolean;
+}
+
+
+export default async function Home() {
+  // Fetch next match
+  const today = new Date().toISOString();
+  let nextMatchData: Match | null = null;
+  try {
+    const matchesRes = await fetchAPI('/matches', {
+      'filters[Date][$gte]': today,
+      'sort[0]': 'Date:asc',
+      'pagination[limit]': '1',
+    });
+    nextMatchData = matchesRes.data?.[0];
+  } catch (error) {
+    console.error('Error fetching matches', error);
+  }
+
+  // Fetch articles
+  let articles: Article[] = [];
+  try {
+    const articlesRes = await fetchAPI('/articles', {
+      'sort[0]': 'createdAt:desc',
+      'pagination[limit]': '2',
+      'populate': '*', // Get media
+    });
+    articles = articlesRes.data || [];
+  } catch (error) {
+    console.error('Error fetching articles', error);
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div>
+      {/* Hero Section */}
+      <section className="relative bg-blue-900 text-white py-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-tr from-blue-900 via-blue-800 to-transparent"></div>
+          {/* Subtle background pattern or image can go here */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-10">
+            <svg viewBox="0 0 200 200" className="w-[800px] h-[800px]" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#FBBF24" d="M43.3,-72.1C55.4,-64.1,64.1,-50.2,71,-35.8C77.9,-21.4,82.9,-6.4,81.1,8C79.4,22.3,70.9,35.9,60.8,47.4C50.6,58.8,38.8,68,25,73.4C11.1,78.8,-4.8,80.4,-20.1,77C-35.4,73.6,-50,65.3,-61.7,53.2C-73.4,41,-82.1,25,-84.9,8.4C-87.8,-8.3,-84.8,-25.6,-75.7,-39.8C-66.6,-53.9,-51.4,-64.9,-36.5,-70.7C-21.5,-76.6,-7,-77.3,4.7,-84.5C16.3,-91.7,31.2,-79.9,43.3,-72.1Z" transform="translate(100 100) scale(1.1)"></path>
+            </svg>
+          </div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+            Zpátky na <span className="text-yellow-400">vrchol</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-4 text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed">
+            Oficiální webové stránky fotbalového klubu TJ Jiskra Višňová. Fanděte s námi a sledujte naše úspěchy!
           </p>
+          <div className="mt-10 flex justify-center gap-4 flex-col sm:flex-row">
+            <Link href="/soupiska" className="px-8 py-4 text-lg font-bold rounded-full bg-yellow-400 text-blue-900 hover:bg-yellow-300 transition-all shadow-lg hover:shadow-yellow-400/50 hover:scale-105">
+              Naše soupiska
+            </Link>
+            <a href="#aktuality" className="px-8 py-4 text-lg font-bold rounded-full bg-transparent border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-blue-900 transition-all shadow-lg hover:scale-105">
+              Zobrazit novinky
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Main Content Areas */}
+      <section id="zapas" className="py-20 bg-slate-50 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            
+            {/* Left Col: Next Match Info Box */}
+            <div className="lg:col-span-1">
+              <div className="bg-white rounded-3xl shadow-xl overflow-hidden border-t-8 border-yellow-400 transform hover:-translate-y-1 transition-transform duration-300">
+                <div className="p-8 text-center bg-blue-900 text-white">
+                  <h2 className="text-2xl font-bold uppercase tracking-widest text-yellow-400">Následující zápas</h2>
+                </div>
+                {nextMatchData ? (
+                  <div className="p-8 text-center">
+                    <div className="flex justify-between items-center mb-6">
+                      <div className="text-xl font-bold text-blue-900 w-2/5">
+                        {nextMatchData.IsHomeGame ? 'Jiskra Višňová' : nextMatchData.Opponent}
+                      </div>
+                      <div className="text-2xl font-black text-slate-400 w-1/5">VS</div>
+                      <div className="text-xl font-bold text-blue-900 w-2/5">
+                        {!nextMatchData.IsHomeGame ? 'Jiskra Višňová' : nextMatchData.Opponent}
+                      </div>
+                    </div>
+                    
+                    <div className="inline-block px-6 py-2 rounded-full bg-slate-100 text-slate-800 font-semibold mb-4">
+                      {new Date(nextMatchData.Date).toLocaleDateString('cs-CZ', {
+                        weekday: 'long', 
+                        day: 'numeric', 
+                        month: 'long', 
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </div>
+                    
+                    <div className="text-slate-500 font-medium">
+                      {nextMatchData.IsHomeGame ? 'Hrajeme doma' : 'Hrajeme venku'}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="p-12 text-center text-slate-500 font-medium text-lg">
+                    Aktuálně nejsou naplánovány žádné zápasy.
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Right Col: Articles */}
+            <div id="aktuality" className="lg:col-span-2">
+              <h2 className="text-4xl font-extrabold text-blue-900 mb-10 flex items-center gap-4">
+                <span className="w-10 h-2 bg-yellow-400 rounded-full inline-block"></span>
+                Aktuality
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {articles.length > 0 ? articles.map((article: Article) => {
+                  const coverImage = article.CoverImage?.url ? getStrapiMedia(article.CoverImage.url) : null;
+                  
+                  return (
+                    <article key={article.id} className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow overflow-hidden group flex flex-col h-full">
+                      {coverImage ? (
+                        <div className="relative h-56 w-full overflow-hidden">
+                          <Image
+                            src={coverImage}
+                            alt={article.Title || 'Article Image'}
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                        </div>
+                      ) : (
+                        <div className="relative h-56 w-full bg-blue-100 flex items-center justify-center">
+                          <span className="text-blue-300 font-bold text-4xl">JV</span>
+                        </div>
+                      )}
+                      
+                      <div className="p-8 flex-1 flex flex-col">
+                        <div className="text-xs text-blue-600 font-black tracking-widest uppercase mb-3">
+                          {new Date(article.createdAt).toLocaleDateString('cs-CZ')}
+                        </div>
+                        <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-700 transition-colors">
+                          {article.Title}
+                        </h3>
+                        {/* We use a simple truncation for content. In a real app we might use a summary field or strip markdown/HTML */}
+                        <p className="text-slate-600 mb-6 flex-1 line-clamp-3">
+                          {typeof article.Content === 'string' ? article.Content : 'Klikněte pro více informací o tomto článku. Podrobnosti se dozvíte uvnitř.'}
+                        </p>
+                        
+                        <div className="mt-auto">
+                          <span className="inline-flex items-center font-bold text-blue-700 hover:text-yellow-500 transition-colors cursor-pointer">
+                            Číst více 
+                            <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                }) : (
+                  <div className="col-span-1 md:col-span-2 bg-white rounded-3xl p-12 text-center text-slate-500 shadow-sm border border-slate-100">
+                    <p className="text-lg">Zatím nebyly publikovány žádné novinky.</p>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+          </div>
         </div>
-      </main>
+      </section>
+      
     </div>
   );
 }
