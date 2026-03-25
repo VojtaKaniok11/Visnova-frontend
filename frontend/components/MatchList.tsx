@@ -30,38 +30,46 @@ const MatchList: React.FC<MatchListProps> = ({ matches }) => {
     .sort((a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime());
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-16">
       {/* NEXT MATCH SECTION */}
       {nextMatch && (
-        <div className="bg-emerald-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden group">
-          <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
-             <svg className="w-48 h-48" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5s.67 1.5 1.5 1.5zm3.5 3c-2.33 0-4.31 1.46-5.11 3.5h10.22c-.8-2.04-2.78-3.5-5.11-3.5z"/>
-             </svg>
-          </div>
+        <div className="bg-blue-900 rounded-[2.5rem] p-10 md:p-14 text-white shadow-2xl relative overflow-hidden group border border-white/5">
+          {/* Decorative atmospheric effects */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] group-hover:bg-blue-500/20 transition-colors duration-1000"></div>
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-yellow-400/5 rounded-full blur-[100px]"></div>
           
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/20 text-white text-sm font-bold uppercase tracking-wider mb-6">
-              <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+            <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-yellow-400 text-blue-950 text-[10px] font-black uppercase tracking-[0.2em] mb-12 shadow-xl border border-white/20">
+              <span className="w-1.5 h-1.5 bg-blue-900 rounded-full animate-pulse"></span>
               Příští zápas
             </div>
             
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 py-4">
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-3xl md:text-5xl font-black">{nextMatch.IsHomeGame ? 'Jiskra Višňová' : nextMatch.Opponent}</h3>
-                <p className="text-emerald-100 text-lg mt-2">{nextMatch.IsHomeGame ? 'Domácí hřiště' : 'Venkovní hřiště'}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-10">
+              <div className="text-center md:text-left flex flex-col">
+                <span className="text-blue-200/40 font-black text-[10px] uppercase tracking-widest mb-3">Tým 1</span>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.1]">
+                  {nextMatch.IsHomeGame ? 'Jiskra Višňová' : nextMatch.Opponent}
+                </h3>
               </div>
               
-              <div className="text-4xl md:text-6xl font-black text-emerald-200 opacity-50 px-4 italic">VS</div>
+              <div className="relative flex justify-center py-6 md:py-0">
+                <div className="text-6xl md:text-8xl font-black text-white/5 italic select-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 tracking-tighter">VS</div>
+                <div className="w-12 h-1 bg-yellow-400/20 rounded-full"></div>
+              </div>
               
-              <div className="flex-1 text-center md:text-right">
-                <h3 className="text-3xl md:text-5xl font-black">{!nextMatch.IsHomeGame ? 'Jiskra Višňová' : nextMatch.Opponent}</h3>
-                <p className="text-emerald-100 text-lg mt-2">{!nextMatch.IsHomeGame ? 'Domácí hřiště' : 'Venkovní hřiště'}</p>
+              <div className="text-center md:text-right flex flex-col">
+                <span className="text-blue-200/40 font-black text-[10px] uppercase tracking-widest mb-3">Tým 2</span>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.1]">
+                  {!nextMatch.IsHomeGame ? 'Jiskra Višňová' : nextMatch.Opponent}
+                </h3>
               </div>
             </div>
             
-            <div className="mt-10 pt-8 border-t border-white/20 flex flex-col items-center">
-              <div className="text-2xl font-bold">
+            <div className="mt-16 pt-10 border-t border-white/5 flex flex-col items-center">
+              <div className="text-2xl md:text-3xl font-black text-yellow-400 tracking-tight flex items-center gap-4">
+                <svg className="w-6 h-6 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
                 {new Date(nextMatch.Date).toLocaleDateString('cs-CZ', {
                   weekday: 'long', 
                   day: 'numeric', 
@@ -70,51 +78,50 @@ const MatchList: React.FC<MatchListProps> = ({ matches }) => {
                   minute: '2-digit'
                 })}
               </div>
-              <p className="text-emerald-100 mt-2">Přijďte nás podpořit!</p>
+              <p className="text-blue-100/40 mt-3 font-bold tracking-[0.3em] uppercase text-[9px]">U nás na stadionu ve Višňové</p>
             </div>
           </div>
         </div>
       )}
 
       {/* PAST RESULTS SECTION */}
-      <div className="space-y-6">
-        <h2 className="text-3xl font-extrabold text-slate-800 flex items-center gap-3">
-          <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 7h2v5.41l4.29 4.29-1.42 1.42L11 13.17V7z"/>
-          </svg>
+      <div className="space-y-12">
+        <h2 className="text-3xl font-black text-blue-900 tracking-tight flex items-center gap-4">
+          <span className="w-2 h-8 bg-blue-900 rounded-full"></span>
           Poslední výsledky
         </h2>
         
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-6">
           {pastResults.map((match) => (
-            <div key={match.id} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row items-center justify-between border border-slate-100">
-              <div className="flex-1 text-center md:text-left font-bold text-lg text-slate-700">
-                <span className={match.IsHomeGame ? "text-emerald-700" : ""}>
+            <div key={match.id} className="bg-white rounded-[2.5rem] p-8 shadow-sm hover:shadow-2xl transition-all duration-500 grid grid-cols-1 md:grid-cols-3 items-center border border-slate-100 group hover:-translate-y-1">
+              <div className="text-center md:text-left font-black text-lg text-slate-900">
+                <span className={match.IsHomeGame ? "text-blue-900 bg-blue-50 px-3 py-1 rounded-lg" : ""}>
                    {match.IsHomeGame ? 'Jiskra Višňová' : match.Opponent}
                 </span>
               </div>
               
-              <div className="my-4 md:my-0 px-8 py-3 bg-slate-100 rounded-xl flex items-center gap-4 min-w-[140px] justify-center">
-                <span className="text-2xl font-black text-slate-900 leading-none">
-                  {match.Score || '- : -'}
-                </span>
+              <div className="flex flex-col items-center gap-4 py-6 md:py-0">
+                <div className="px-12 py-5 bg-slate-50 rounded-[1.5rem] flex items-center justify-center border border-slate-100 group-hover:bg-blue-900 group-hover:text-yellow-400 transition-all duration-300 min-w-[160px] shadow-sm group-hover:shadow-blue-900/30">
+                  <span className="text-3xl font-black leading-none tracking-tight">
+                    {match.Score || '- : -'}
+                  </span>
+                </div>
+                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em]">
+                   {new Date(match.Date).toLocaleDateString('cs-CZ')}
+                </div>
               </div>
               
-              <div className="flex-1 text-center md:text-right font-bold text-lg text-slate-700">
-                <span className={!match.IsHomeGame ? "text-emerald-700" : ""}>
+              <div className="text-center md:text-right font-black text-lg text-slate-900">
+                <span className={!match.IsHomeGame ? "text-blue-900 bg-blue-50 px-3 py-1 rounded-lg" : ""}>
                    {!match.IsHomeGame ? 'Jiskra Višňová' : match.Opponent}
                 </span>
-              </div>
-              
-              <div className="w-full md:w-auto mt-4 md:mt-0 md:ml-8 text-xs text-slate-400 font-medium uppercase tracking-tighter">
-                {new Date(match.Date).toLocaleDateString('cs-CZ')}
               </div>
             </div>
           ))}
           
           {pastResults.length === 0 && (
-            <div className="text-slate-400 text-center py-12 bg-slate-50 rounded-2xl dashed border-2 border-slate-200">
-              Žádné odehrané zápasy v databázi.
+            <div className="text-slate-400 text-center py-20 bg-slate-50 rounded-[2.5rem] border-2 border-dashed border-slate-100">
+              <p className="text-lg font-bold tracking-widest uppercase opacity-40">Žádné odehrané zápasy</p>
             </div>
           )}
         </div>

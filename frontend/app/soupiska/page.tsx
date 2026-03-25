@@ -1,18 +1,14 @@
-import { fetchAPI } from '@/lib/strapi';
+import { fetchAPI, getStrapiMedia } from '@/lib/strapi';
 import Image from 'next/image';
 
 export const revalidate = 60;
-
-interface StrapiImage {
-  url: string;
-}
 
 interface Player {
   id: number;
   Name: string;
   Position: string;
   JerseyNumber?: number;
-  Photo?: StrapiImage;
+  Photo?: any;
 }
 
 
@@ -48,7 +44,10 @@ export default async function Soupiska() {
         {players.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {players.map((player: Player) => {
-              const imageUrl = player.Photo?.url ? 'http://localhost:1337' + player.Photo.url : '/placeholder.png';
+              const imageUrl = getStrapiMedia(player.Photo) || '/placeholder.png';
+
+              // KROK 4: Ladění (přidáno pro kontrolu)
+              console.log('DEBUG: URL pro hráče', player.Name, 'je:', player.Photo?.url);
               
               return (
                 <div key={player.id} className="bg-white rounded-[2rem] shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300 relative border-b-8 border-yellow-400 hover:border-blue-900">

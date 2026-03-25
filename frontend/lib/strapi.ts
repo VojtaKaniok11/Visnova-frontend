@@ -2,10 +2,6 @@ const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"
 
 /**
  * Helper to make GET requests to Strapi API endpoints
- * @param {string} path Path to the API route
- * @param {Object} urlParamsObject URL parameters object
- * @param {Object} options Fetch options
- * @returns Parsed API call response
  */
 export async function getStrapiURL(path = "") {
   return `${STRAPI_URL}${path}`;
@@ -22,7 +18,7 @@ export async function fetchAPI(path: string, urlParamsObject: Record<string, str
 
   // Trigger API call
   const response = await fetch(requestUrl, {
-    next: { revalidate: 60 }, // Revalidate every 60 seconds (or adjust to your cache settings)
+    next: { revalidate: 60 },
     ...options,
   });
 
@@ -36,16 +32,18 @@ export async function fetchAPI(path: string, urlParamsObject: Record<string, str
   return data;
 }
 
-export function getStrapiMedia(url: string | null) {
-  if (url == null) {
-    return null;
-  }
+/**
+ * Step 3: Skládání plné URL
+ */
+export function getStrapiMedia(media: any) {
+  if (!media) return null;
+  
+  // Handle both single object and array (for multiple: true fields)
+  const mediaItem = Array.isArray(media) ? media[0] : media;
+  const backendUrl = mediaItem?.url;
+  
+  if (!backendUrl) return null;
 
-  // Return full URL if it's external
-  if (url.startsWith("http") || url.startsWith("//")) {
-    return url;
-  }
-
-  // Otherwise, prefix it with the Strapi URL
-  return `${STRAPI_URL}${url}`;
+  // Exact formula from user:
+  return backendUrl.startsWith('/') ? 'http://localhost:1337' + backendUrl : backendUrl;
 }
