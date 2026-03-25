@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "matches",
+  "info": {
+    "singularName": "match",
+    "pluralName": "matches",
+    "displayName": "Match"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Opponent": {
+      "type": "string"
+    },
+    "Date": {
+      "type": "datetime"
+    },
+    "Score": {
+      "type": "string"
+    },
+    "IsHomeGame": {
+      "type": "boolean"
+    }
+  }
+}
