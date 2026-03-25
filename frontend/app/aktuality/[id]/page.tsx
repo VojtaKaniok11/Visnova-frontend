@@ -55,20 +55,16 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
-      {/* Header / Navigation Bar */}
-      <nav className="bg-blue-900 shadow-xl border-b border-white/10 sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-800/50 text-yellow-400 font-black text-xs uppercase tracking-widest rounded-xl hover:bg-yellow-400 hover:text-blue-900 transition-all shadow-sm border border-yellow-400/20 active:scale-95 group">
+      <main className="max-w-4xl mx-auto px-6 py-12 md:py-20 flex flex-col gap-8">
+        <div className="flex justify-start">
+          <Link href="/" className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-blue-900 font-black text-xs uppercase tracking-widest rounded-xl hover:bg-yellow-400 transition-all shadow-md border border-slate-100 active:scale-95 group">
             <svg className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
             Zpět na hlavní stranu
           </Link>
-          <div className="hidden sm:block text-white/40 font-black text-[10px] uppercase tracking-[0.2em]">TJ Jiskra Višňová</div>
         </div>
-      </nav>
 
-      <main className="max-w-4xl mx-auto px-6 py-12 md:py-20">
         <article className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-100">
           
           {/* Cover Image */}

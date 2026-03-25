@@ -22,6 +22,14 @@
     },
     "IsHomeGame": {
       "type": "boolean"
+    },
+    "Team": {
+      "type": "enumeration",
+      "enum": [
+        "A",
+        "B",
+        "C"
+      ]
     }
   }
 }

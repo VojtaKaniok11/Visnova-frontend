@@ -6,6 +6,7 @@ interface Match {
   Date: string;
   IsHomeGame: boolean;
   Score?: string | null;
+  Team?: string; // Add Team field
 }
 
 interface MatchListProps {
@@ -24,10 +25,15 @@ const MatchList: React.FC<MatchListProps> = ({ matches }) => {
   const nextMatch = futureMatches[0];
 
   // 2. Past results: Matches in the past OR matches with a score
-  const pastResults = matches
-    .filter(m => new Date(m.Date) < now || m.Score)
-    .filter(m => m.id !== nextMatch?.id)
-    .sort((a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime());
+  // 2. Past results: Latest match for each team (A, B, C) that has already been played
+  const teams = ['A', 'B', 'C'];
+  const pastResults = teams.map(team => {
+    return matches
+      .filter(m => m.Team === team)
+      .filter(m => new Date(m.Date) < now || m.Score)
+      .filter(m => m.id !== nextMatch?.id)
+      .sort((a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime())[0];
+  }).filter(Boolean); // Remote undefined if a team has no past matches
 
   return (
     <div className="space-y-16">
@@ -48,7 +54,7 @@ const MatchList: React.FC<MatchListProps> = ({ matches }) => {
               <div className="text-center md:text-left flex flex-col">
                 <span className="text-blue-200/40 font-black text-[10px] uppercase tracking-widest mb-3">Tým 1</span>
                 <h3 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.1]">
-                  {nextMatch.IsHomeGame ? 'Jiskra Višňová' : nextMatch.Opponent}
+                  {nextMatch.IsHomeGame ? 'Višňová' : nextMatch.Opponent}
                 </h3>
               </div>
               
@@ -60,16 +66,13 @@ const MatchList: React.FC<MatchListProps> = ({ matches }) => {
               <div className="text-center md:text-right flex flex-col">
                 <span className="text-blue-200/40 font-black text-[10px] uppercase tracking-widest mb-3">Tým 2</span>
                 <h3 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.1]">
-                  {!nextMatch.IsHomeGame ? 'Jiskra Višňová' : nextMatch.Opponent}
+                  {!nextMatch.IsHomeGame ? 'Višňová' : nextMatch.Opponent}
                 </h3>
               </div>
             </div>
             
             <div className="mt-16 pt-10 border-t border-white/5 flex flex-col items-center">
-              <div className="text-2xl md:text-3xl font-black text-yellow-400 tracking-tight flex items-center gap-4">
-                <svg className="w-6 h-6 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                </svg>
+              <div className="text-2xl md:text-3xl font-black text-yellow-400 tracking-tight flex items-center gap-4 text-center">
                 {new Date(nextMatch.Date).toLocaleDateString('cs-CZ', {
                   weekday: 'long', 
                   day: 'numeric', 
@@ -96,12 +99,17 @@ const MatchList: React.FC<MatchListProps> = ({ matches }) => {
             <div key={match.id} className="bg-white rounded-[2.5rem] p-8 shadow-sm hover:shadow-2xl transition-all duration-500 grid grid-cols-1 md:grid-cols-3 items-center border border-slate-100 group hover:-translate-y-1">
               <div className="text-center md:text-left font-black text-lg text-slate-900">
                 <span className={match.IsHomeGame ? "text-blue-900 bg-blue-50 px-3 py-1 rounded-lg" : ""}>
-                   {match.IsHomeGame ? 'Jiskra Višňová' : match.Opponent}
+                   {match.IsHomeGame ? 'Višňová' : match.Opponent}
                 </span>
               </div>
               
-              <div className="flex flex-col items-center gap-4 py-6 md:py-0">
-                <div className="px-12 py-5 bg-slate-50 rounded-[1.5rem] flex items-center justify-center border border-slate-100 group-hover:bg-blue-900 group-hover:text-yellow-400 transition-all duration-300 min-w-[160px] shadow-sm group-hover:shadow-blue-900/30">
+              <div className="flex flex-col items-center gap-3 py-6 md:py-0">
+                {match.Team && (
+                  <span className="px-3 py-1 bg-yellow-400 rounded-full text-blue-900 text-[10px] font-black shadow-sm">
+                    {match.Team}-TÝM
+                  </span>
+                )}
+                <div className="px-12 py-5 bg-slate-50 rounded-[1.5rem] flex flex-col items-center justify-center border border-slate-100 group-hover:bg-blue-900 group-hover:text-yellow-400 transition-all duration-300 min-w-[170px] shadow-sm group-hover:shadow-blue-900/30">
                   <span className="text-3xl font-black leading-none tracking-tight">
                     {match.Score || '- : -'}
                   </span>
@@ -113,7 +121,7 @@ const MatchList: React.FC<MatchListProps> = ({ matches }) => {
               
               <div className="text-center md:text-right font-black text-lg text-slate-900">
                 <span className={!match.IsHomeGame ? "text-blue-900 bg-blue-50 px-3 py-1 rounded-lg" : ""}>
-                   {!match.IsHomeGame ? 'Jiskra Višňová' : match.Opponent}
+                   {!match.IsHomeGame ? 'Višňová' : match.Opponent}
                 </span>
               </div>
             </div>

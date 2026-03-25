@@ -29,12 +29,14 @@ interface Match {
   Opponent: string;
   Date: string;
   IsHomeGame: boolean;
+  Score?: string | null;
+  Team?: string;
 }
 
 
 export default async function Home() {
   // Fetch all relevant matches
-  let matches = [];
+  let matches: Match[] = [];
   try {
     const matchesRes = await fetchAPI('/matches', {
       'populate': '*',
@@ -63,7 +65,7 @@ export default async function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-blue-900 text-white py-32 overflow-hidden">
+      <section className="relative bg-blue-900 text-white py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-tr from-blue-900 via-blue-800 to-transparent"></div>
           {/* Subtle glow / pattern */}
@@ -75,20 +77,12 @@ export default async function Home() {
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
             Zpátky na <span className="text-yellow-400">vrchol</span>
           </h1>
-          <p className="mt-4 text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="mt-4 text-lg md:text-xl text-blue-100 max-w-2xl mx-auto font-light leading-relaxed opacity-90">
             Oficiální webové stránky fotbalového klubu TJ Jiskra Višňová. Fanděte s námi a sledujte naše úspěchy!
           </p>
-          <div className="mt-10 flex justify-center gap-4 flex-col sm:flex-row">
-            <Link href="/soupiska" className="px-8 py-4 text-lg font-bold rounded-full bg-yellow-400 text-blue-900 hover:bg-yellow-300 transition-all shadow-lg hover:shadow-yellow-400/50 hover:scale-105">
-              Naše soupiska
-            </Link>
-            <a href="#aktuality" className="px-8 py-4 text-lg font-bold rounded-full bg-transparent border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-blue-900 transition-all shadow-lg hover:scale-105">
-              Zobrazit novinky
-            </a>
-          </div>
         </div>
       </section>
 

@@ -522,6 +522,7 @@ export interface ApiMatchMatch extends Struct.CollectionTypeSchema {
     Opponent: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     Score: Schema.Attribute.String;
+    Team: Schema.Attribute.Enumeration<['A', 'B', 'C']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

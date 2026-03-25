@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Jiskra Višňová',
@@ -13,32 +14,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="cs" className="scroll-smooth">
-      <body className="bg-slate-50 text-slate-900 font-sans flex flex-col min-h-screen">
+    <html lang="cs" className="scroll-smooth" suppressHydrationWarning>
+      <body className="bg-slate-50 text-slate-900 font-sans flex flex-col min-h-screen" suppressHydrationWarning>
         
         {/* Navbar */}
-        <header className="fixed w-full z-50 bg-blue-900 shadow-md">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-20">
-              {/* Logo / Title */}
-              <div className="flex-shrink-0 flex items-center">
-                <Link href="/" className="flex items-center gap-3 group">
-                  <div className="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center font-bold text-blue-900 text-xl shadow-inner group-hover:scale-105 transition-transform duration-300">
-                    JV
-                  </div>
-                  <span className="font-extrabold text-2xl tracking-tight text-white group-hover:text-yellow-400 transition-colors duration-300">
-                    Jiskra Višňová
-                  </span>
+        <header className="fixed w-full z-50 bg-blue-900 shadow-md h-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+            <div className="flex justify-between items-center h-full relative">
+              {/* Logo (Sticks out below) */}
+              <div className="flex-shrink-0 flex items-center h-full -ml-4">
+                <Link href="/" className="relative h-28 w-28 group translate-y-6">
+                  <Image 
+                    src="/logo.png" 
+                    alt="Logo Jiskra Višňová" 
+                    fill 
+                    className="object-contain drop-shadow-xl group-hover:scale-105 transition-transform duration-300"
+                    priority
+                  />
                 </Link>
               </div>
 
               {/* Navigation */}
-              <nav className="hidden md:flex space-x-8">
-                <Link href="/" className="text-blue-50 hover:text-yellow-400 font-medium tracking-wide transition-colors uppercase text-sm">
+              <nav className="hidden md:flex space-x-12">
+                <Link href="/" className="text-white hover:text-yellow-400 font-bold tracking-wide transition-colors uppercase text-lg">
                   Domů
                 </Link>
-                <Link href="/soupiska" className="text-blue-50 hover:text-yellow-400 font-medium tracking-wide transition-colors uppercase text-sm">
+                <Link href="/rozpis" className="text-white hover:text-yellow-400 font-bold tracking-wide transition-colors uppercase text-lg">
+                  Rozpis
+                </Link>
+                <Link href="/soupiska" className="text-white hover:text-yellow-400 font-bold tracking-wide transition-colors uppercase text-lg">
                   Soupiska
+                </Link>
+                <Link href="/historie" className="text-white hover:text-yellow-400 font-bold tracking-wide transition-colors uppercase text-lg">
+                  Historie
                 </Link>
               </nav>
 
@@ -68,7 +76,9 @@ export default function RootLayout({
             </div>
             <div className="flex space-x-6">
               <Link href="/" className="hover:text-yellow-400 transition">Domů</Link>
+              <Link href="/rozpis" className="hover:text-yellow-400 transition">Rozpis</Link>
               <Link href="/soupiska" className="hover:text-yellow-400 transition">Soupiska</Link>
+              <Link href="/historie" className="hover:text-yellow-400 transition">Historie</Link>
             </div>
           </div>
           <div className="mt-8 text-center text-sm text-slate-500">
