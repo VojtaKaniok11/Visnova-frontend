@@ -1,4 +1,4 @@
-import { fetchAPI, getStrapiMedia } from '@/lib/strapi';
+import { fetchAPI } from '@/lib/strapi';
 import Image from 'next/image';
 
 export const revalidate = 60;
@@ -48,7 +48,7 @@ export default async function Soupiska() {
         {players.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {players.map((player: Player) => {
-              const photoUrl = player.Photo?.url ? getStrapiMedia(player.Photo.url) : null;
+              const imageUrl = player.Photo?.url ? 'http://localhost:1337' + player.Photo.url : '/placeholder.png';
               
               return (
                 <div key={player.id} className="bg-white rounded-[2rem] shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300 relative border-b-8 border-yellow-400 hover:border-blue-900">
@@ -62,21 +62,14 @@ export default async function Soupiska() {
 
                   {/* Photo area */}
                   <div className="relative h-80 w-full bg-slate-200 overflow-hidden">
-                    {photoUrl ? (
-                      <Image
-                        src={photoUrl}
-                        alt={`Fotka hráče: ${player.Name}`}
-                        fill
-                        className="object-cover object-top group-hover:scale-110 transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-blue-100 text-blue-300">
-                        <svg className="w-32 h-32 opacity-20" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
-                      </div>
-                    )}
+                    <Image
+                      src={imageUrl}
+                      alt={`Fotka hráče: ${player.Name}`}
+                      fill
+                      unoptimized={true}
+                      className="object-cover object-top group-hover:scale-110 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
                     
                     {/* Gradient Overlay for subtle look */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>

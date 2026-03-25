@@ -1,6 +1,8 @@
-import { fetchAPI, getStrapiMedia } from '@/lib/strapi';
+import { fetchAPI } from '@/lib/strapi';
 import Image from 'next/image';
 import Link from 'next/link';
+import MatchList from '@/components/MatchList';
+
 
 export const revalidate = 60;
 
@@ -25,19 +27,17 @@ interface Match {
 
 
 export default async function Home() {
-  // Fetch next match
-  const today = new Date().toISOString();
-  let nextMatchData: Match | null = null;
+  // Fetch all relevant matches
+  let matches = [];
   try {
     const matchesRes = await fetchAPI('/matches', {
-      'filters[Date][$gte]': today,
-      'sort[0]': 'Date:asc',
-      'pagination[limit]': '1',
+      'sort[0]': 'Date:desc',
     });
-    nextMatchData = matchesRes.data?.[0];
+    matches = matchesRes.data || [];
   } catch (error) {
     console.error('Error fetching matches', error);
   }
+
 
   // Fetch articles
   let articles: Article[] = [];
@@ -88,51 +88,16 @@ export default async function Home() {
       <section id="zapas" className="py-20 bg-slate-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
-            {/* Left Col: Next Match Info Box */}
+            {/* Left Col: Matches Info */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-3xl shadow-xl overflow-hidden border-t-8 border-yellow-400 transform hover:-translate-y-1 transition-transform duration-300">
-                <div className="p-8 text-center bg-blue-900 text-white">
-                  <h2 className="text-2xl font-bold uppercase tracking-widest text-yellow-400">Následující zápas</h2>
-                </div>
-                {nextMatchData ? (
-                  <div className="p-8 text-center">
-                    <div className="flex justify-between items-center mb-6">
-                      <div className="text-xl font-bold text-blue-900 w-2/5">
-                        {nextMatchData.IsHomeGame ? 'Jiskra Višňová' : nextMatchData.Opponent}
-                      </div>
-                      <div className="text-2xl font-black text-slate-400 w-1/5">VS</div>
-                      <div className="text-xl font-bold text-blue-900 w-2/5">
-                        {!nextMatchData.IsHomeGame ? 'Jiskra Višňová' : nextMatchData.Opponent}
-                      </div>
-                    </div>
-                    
-                    <div className="inline-block px-6 py-2 rounded-full bg-slate-100 text-slate-800 font-semibold mb-4">
-                      {new Date(nextMatchData.Date).toLocaleDateString('cs-CZ', {
-                        weekday: 'long', 
-                        day: 'numeric', 
-                        month: 'long', 
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}
-                    </div>
-                    
-                    <div className="text-slate-500 font-medium">
-                      {nextMatchData.IsHomeGame ? 'Hrajeme doma' : 'Hrajeme venku'}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="p-12 text-center text-slate-500 font-medium text-lg">
-                    Aktuálně nejsou naplánovány žádné zápasy.
-                  </div>
-                )}
-              </div>
+              <MatchList matches={matches} />
             </div>
 
             {/* Right Col: Articles */}
-            <div id="aktuality" className="lg:col-span-2">
+            <div id="aktuality" className="lg:col-span-1">
+
               <h2 className="text-4xl font-extrabold text-blue-900 mb-10 flex items-center gap-4">
                 <span className="w-10 h-2 bg-yellow-400 rounded-full inline-block"></span>
                 Aktuality
@@ -140,24 +105,19 @@ export default async function Home() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {articles.length > 0 ? articles.map((article: Article) => {
-                  const coverImage = article.CoverImage?.url ? getStrapiMedia(article.CoverImage.url) : null;
+                  const imageUrl = article.CoverImage?.url ? 'http://localhost:1337' + article.CoverImage.url : '/placeholder.png';
                   
                   return (
                     <article key={article.id} className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow overflow-hidden group flex flex-col h-full">
-                      {coverImage ? (
-                        <div className="relative h-56 w-full overflow-hidden">
-                          <Image
-                            src={coverImage}
-                            alt={article.Title || 'Article Image'}
-                            fill
-                            className="object-cover group-hover:scale-110 transition-transform duration-500"
-                          />
-                        </div>
-                      ) : (
-                        <div className="relative h-56 w-full bg-blue-100 flex items-center justify-center">
-                          <span className="text-blue-300 font-bold text-4xl">JV</span>
-                        </div>
-                      )}
+                      <div className="relative h-56 w-full overflow-hidden">
+                        <Image
+                          src={imageUrl}
+                          alt={article.Title || 'Article Image'}
+                          fill
+                          unoptimized={true}
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                      </div>
                       
                       <div className="p-8 flex-1 flex flex-col">
                         <div className="text-xs text-blue-600 font-black tracking-widest uppercase mb-3">
