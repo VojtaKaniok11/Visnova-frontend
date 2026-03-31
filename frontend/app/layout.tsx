@@ -18,17 +18,17 @@ export default function RootLayout({
       <body className="bg-slate-50 text-slate-900 font-sans flex flex-col min-h-screen" suppressHydrationWarning>
         
         {/* Navbar */}
-        <header className="fixed w-full z-50 bg-blue-900 shadow-md h-20">
+        <header className="fixed w-full z-50 bg-blue-900 shadow-md h-[92px]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
             <div className="flex justify-between items-center h-full relative">
-              {/* Logo (Sticks out below) */}
-              <div className="flex-shrink-0 flex items-center h-full -ml-4">
-                <Link href="/" className="relative h-28 w-28 group translate-y-6">
+              {/* Logo (Fits within header) */}
+              <div className="flex-shrink-0 flex items-center h-full">
+                <Link href="/" className="relative h-[74px] w-[74px]">
                   <Image 
                     src="/logo.png" 
                     alt="Logo Jiskra Višňová" 
                     fill 
-                    className="object-contain drop-shadow-xl group-hover:scale-105 transition-transform duration-300"
+                    className="object-contain drop-shadow-xl"
                     priority
                   />
                 </Link>
@@ -63,22 +63,16 @@ export default function RootLayout({
         </header>
 
         {/* Main Content */}
-        <main className="flex-grow pt-20">
+        <main className="flex-grow pt-[92px]">
           {children}
         </main>
 
         {/* Footer */}
         <footer className="bg-slate-900 text-slate-300 py-12 mt-16 border-t-[6px] border-yellow-400">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0 text-center md:text-left">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="mb-4">
               <span className="text-2xl font-bold text-white mb-2 block">Jiskra Višňová</span>
               <p className="text-sm">Oficiální webové stránky fotbalového klubu.</p>
-            </div>
-            <div className="flex space-x-6">
-              <Link href="/" className="hover:text-yellow-400 transition">Domů</Link>
-              <Link href="/rozpis" className="hover:text-yellow-400 transition">Rozpis</Link>
-              <Link href="/soupiska" className="hover:text-yellow-400 transition">Soupiska</Link>
-              <Link href="/historie" className="hover:text-yellow-400 transition">Historie</Link>
             </div>
           </div>
           <div className="mt-8 text-center text-sm text-slate-500">

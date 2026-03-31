@@ -54,12 +54,9 @@ export default async function Soupiska() {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h1 className="text-4xl md:text-5xl font-black text-blue-900 tracking-tight mb-4 flex justify-center items-center gap-6">
             <div className="w-10 h-2 bg-yellow-400 rounded-full"></div>
-            Naše Soupiska
+            Soupiska
             <div className="w-10 h-2 bg-yellow-400 rounded-full"></div>
           </h1>
-          <p className="text-lg text-slate-600 font-medium mt-6 opacity-70">
-            Tým TJ Jiskra Višňová. Hrdí bojovníci připravení na každou výzvu.
-          </p>
         </div>
 
         {groupedPlayers.length > 0 ? (

@@ -17,6 +17,7 @@ export default async function RozpisPage() {
     const response = await fetchAPI('/matches', {
       populate: '*',
       'sort[0]': 'Date:asc',
+      'pagination[pageSize]': 100,
     });
     matches = response.data || [];
   } catch (error) {
@@ -42,7 +43,7 @@ export default async function RozpisPage() {
             <div className="w-10 h-2 bg-yellow-400 rounded-full"></div>
           </h1>
           <p className="text-lg text-slate-600 font-medium mt-6 opacity-70">
-            Aktuální přehled všech jarních zápasů našich týmů přímo ze systému.
+            Aktuální přehled všech jarních zápasů
           </p>
         </div>
 
