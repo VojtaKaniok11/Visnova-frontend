@@ -110,6 +110,40 @@ export default async function Home() {
           )}
         </div>
       </section>
+      {/* Sponsors Section */}
+      <section className="py-16 bg-white border-t border-slate-100 overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-black text-blue-900 mb-6 uppercase tracking-tighter flex flex-col items-center gap-4">
+              <span className="text-sm text-yellow-500 font-black tracking-[0.3em] uppercase">Spolupráce</span>
+              Naši partneři
+            </h2>
+            <div className="w-20 h-1.5 bg-yellow-400 mx-auto rounded-full shadow-sm"></div>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-x-16 sm:gap-x-20 md:gap-x-24 gap-y-8 sm:gap-y-10 md:gap-y-12 items-center">
+            {[
+              "autodily.webp", "bw.jpg", "cis.jpg", "Denso-Logo.png", "Fačr.png",
+              "juta_logo.png",
+              "liberecky_kraj.webp", "LOGO-CUS.png", "louda_auto.png",
+              "Narodni-sportovni-agentura_logo-rgb - kopie.png", "stavebniny-zilka.jpg",
+              "volosin.jpg", "zelezarstvi.jpg"
+            ].map((logo, i) => (
+              <div 
+                key={i} 
+                className="w-40 sm:w-52 md:w-64 h-12 sm:h-16 md:h-20 relative"
+              >
+                <Image 
+                  src={`/${logo}`}
+                  alt={`Partner ${logo}`}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

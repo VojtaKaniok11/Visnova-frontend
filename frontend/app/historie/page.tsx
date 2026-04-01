@@ -1,4 +1,4 @@
-
+import Image from "next/image";
 
 export default function HistoriePage() {
   return (
@@ -28,6 +28,30 @@ export default function HistoriePage() {
               </p>
             </div>
 
+            {/* Historická fotka 1945 */}
+            <div className="flex items-center justify-center">
+              <div className="relative w-full max-w-[480px] aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                <Image 
+                  src="/1945.jpg" 
+                  alt="Historie 1945" 
+                  fill 
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Historická fotka Kroky */}
+            <div className="flex items-center justify-center">
+              <div className="relative w-full max-w-[480px] aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                <Image 
+                  src="/Kroky.jpg" 
+                  alt="Historie - Kroky" 
+                  fill 
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
             {/* Section 2: První kroky */}
             <div className="space-y-4">
               <h2 className="text-xl font-bold text-slate-900">
@@ -46,6 +70,30 @@ export default function HistoriePage() {
               <p className="text-slate-700 leading-relaxed text-sm md:text-base">
                 V sezoně 1961/1962 se Jiskře podařilo získat titul Přeborník okresu a cenu za nejslušnější mužstvo. Roku 1967 bylo navrženo pořádat každoroční memoriál na počest tragicky zesnulému Zdeňku Roušarovi, který dlouhá léta patřil k důležitým hráčům A-týmu. V ročníku 1967/1968 mužstvo postoupilo do I. A třídy. Koncem šedesátých let vzniklo B-mužstvo a byl navázán družební styk s BSG Eintracht Kolkwitz. V sedmdesátých letech se klub potloukal mezi B třídou a I. A třídou.
               </p>
+            </div>
+
+            {/* Historická fotka 1960 */}
+            <div className="flex items-center justify-center">
+              <div className="relative w-full max-w-[480px] aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                <Image 
+                  src="/1960.jpg" 
+                  alt="Úspěšné období 1960" 
+                  fill 
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Historická fotka 1987 */}
+            <div className="flex items-center justify-center">
+              <div className="relative w-full max-w-[480px] aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                <Image 
+                  src="/Historie_1987.jpg" 
+                  alt="Historie 1987" 
+                  fill 
+                  className="object-cover"
+                />
+              </div>
             </div>
 
             {/* Section 4: Osmdesátá léta */}
@@ -208,4 +256,3 @@ export default function HistoriePage() {
     </div>
   );
 }
-
