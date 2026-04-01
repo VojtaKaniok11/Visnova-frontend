@@ -123,12 +123,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
               )}
             </div>
             
-            <div className="mt-20 pt-12 border-t border-slate-100 flex items-center justify-between gap-8 flex-col sm:flex-row">
-              <div className="flex -space-x-4">
-                 {[1,2,3].map(i => (
-                   <div key={i} className={`w-12 h-12 rounded-full border-4 border-white bg-blue-900 flex items-center justify-center text-[10px] font-black text-yellow-400 shadow-md transform -rotate-${i*5}`}>TJ</div>
-                 ))}
-              </div>
+            <div className="mt-20 pt-12 border-t border-slate-100 flex items-center justify-center gap-8">
               <p className="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Fandíme Jiskře Višňová</p>
             </div>
           </div>
