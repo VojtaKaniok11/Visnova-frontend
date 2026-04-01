@@ -74,11 +74,11 @@ export default async function Soupiska() {
                     console.log('DEBUG: URL pro hráče', player.Name, 'je:', player.Photo?.url);
                     
                     return (
-                      <div key={player.id} className="bg-white rounded-[2rem] shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-500 relative border-b-8 border-yellow-400 hover:border-blue-900 hover:-translate-y-2">
+                      <div key={player.id} className="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden relative">
                         
                         {/* Jersey Number Badge */}
                         {player.JerseyNumber && (
-                          <div className="absolute top-4 right-4 z-10 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-blue-950 font-black text-xl shadow-xl border-4 border-white group-hover:scale-110 group-hover:bg-blue-900 group-hover:text-yellow-400 transition-all duration-300">
+                          <div className="absolute top-4 right-4 z-10 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-blue-950 font-black text-xl shadow-md border-4 border-white">
                             {player.JerseyNumber}
                           </div>
                         )}
@@ -90,16 +90,16 @@ export default async function Soupiska() {
                             alt={`Fotka hráče: ${player.Name}`}
                             fill
                             unoptimized={true}
-                            className="object-cover object-top group-hover:scale-110 transition-transform duration-1000"
+                            className="object-cover object-top transition-transform duration-1000"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                           />
                           
                           {/* Gradient Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-900/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-900/20 to-transparent opacity-95"></div>
                           
                           {/* Name inside gradient */}
                           <div className="absolute bottom-6 left-6 right-6">
-                            <h2 className="text-2xl font-black text-white group-hover:text-yellow-400 transition-colors drop-shadow-lg leading-tight">
+                            <h2 className="text-2xl font-black text-white leading-tight">
                               {player.Name}
                             </h2>
                             <div className="text-yellow-400/80 font-bold tracking-[0.2em] uppercase text-[10px] mt-2 flex items-center gap-2">
