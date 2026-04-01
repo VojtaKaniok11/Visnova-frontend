@@ -120,10 +120,34 @@ export default function HistoriePage() {
                 </p>
               </div>
 
-              {/* Section 6: Nultá léta */}
+              {/* Historická fotka Postup 98 */}
+              <div className="flex items-center justify-center">
+                <div className="relative w-full max-w-[480px] aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                  <Image 
+                    src="/postup_98.jpg" 
+                    alt="Postup 1998" 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Historická fotka 2005 */}
+              <div className="flex items-center justify-center">
+                <div className="relative w-full max-w-[480px] aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                  <Image 
+                    src="/2005_umelka.jpg" 
+                    alt="UMT 2005" 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Section 6: Nultá éra */}
               <div className="space-y-4">
                 <h2 className="text-xl font-bold text-slate-900">
-                  Nultá léta
+                  Nultá éra
                 </h2>
                 <p className="text-slate-700 leading-relaxed text-sm md:text-base">
                   Provedly se zásadní úpravy hrací plochy. Velký milník přichází roku 2004, kdy se začínají práce na výstavbě umělé plochy za hlavním hřištěm. Následující rok je vše zhotovené a za doprovodu slavnostního zahájení je UMT zpřístupněna všem…

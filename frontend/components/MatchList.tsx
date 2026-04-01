@@ -1,4 +1,4 @@
-import React from 'react';
+import Image from 'next/image';
 
 interface Match {
   id: number;
@@ -53,7 +53,22 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
     <div className="space-y-16">
       {/* NEXT MATCH SECTION */}
       {nextMatch && (show === 'upcoming' || show === 'both') && (
-        <div className="bg-blue-900 rounded-[2.5rem] p-10 md:p-14 text-white shadow-2xl relative overflow-hidden group border border-white/5">
+        <div className="bg-blue-950 rounded-[2.5rem] p-10 md:p-14 text-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group border border-white/10">
+          
+          {/* Background Image Layer */}
+          <div className="absolute inset-0 opacity-40 mix-blend-overlay">
+            <Image 
+              src="/match-bg.png" 
+              alt="Stadium Background" 
+              fill 
+              className="object-cover object-center grayscale brightness-75"
+              priority
+            />
+          </div>
+
+          {/* Gradient Overlay for Readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-950/90 via-blue-900/60 to-blue-950/90 pointer-events-none"></div>
+          
           {/* Decorative atmospheric effects */}
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] group-hover:bg-blue-500/20 transition-colors duration-1000"></div>
           <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-yellow-400/5 rounded-full blur-[100px]"></div>
