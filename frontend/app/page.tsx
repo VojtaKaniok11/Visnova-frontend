@@ -65,7 +65,7 @@ export default async function Home() {
   return (
     <div>
       {/* Main Content Areas */}
-      <section id="zapas" className="py-20 bg-slate-50 relative">
+      <section id="zapas" className="pt-20 pb-40 bg-slate-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Row 1: Next Match (Full Width) */}
@@ -94,20 +94,7 @@ export default async function Home() {
             </div>
           </div>
 
-          {/* Row 3: Remaining 2 Articles side-by-side */}
-          {articles.length > 1 && (
-            <div className="mt-20">
-              <h2 className="text-4xl font-black text-blue-900 mb-12 flex items-center gap-6">
-                <span className="w-14 h-3 bg-yellow-400 rounded-full inline-block shadow-md"></span>
-                Další novinky
-              </h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                {articles.slice(1).map((article: Article) => (
-                  <ArticleCard key={article.id} article={article} />
-                ))}
-              </div>
-            </div>
-          )}
+
         </div>
       </section>
       {/* Sponsors Section */}
@@ -200,7 +187,7 @@ function ArticleCard({ article }: { article: Article }) {
           {summary}
         </p>
         
-        <div className="mt-auto">
+        <div className="mt-auto flex justify-between items-center">
           <Link 
             href={`/aktuality/${article.documentId}`}
             className="inline-flex items-center px-6 py-2.5 bg-blue-900 text-yellow-400 font-black text-xs uppercase tracking-widest rounded-xl hover:bg-blue-800 transition-all shadow-lg hover:shadow-blue-900/20 active:scale-95 group/btn"
@@ -209,6 +196,12 @@ function ArticleCard({ article }: { article: Article }) {
             <svg className="w-4 h-4 ml-2 group-hover/btn:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
             </svg>
+          </Link>
+          <Link 
+            href="/aktuality"
+            className="inline-flex items-center px-6 py-2.5 bg-slate-100 text-slate-700 hover:text-blue-900 font-black text-xs uppercase tracking-widest rounded-xl hover:bg-slate-200 transition-all shadow-sm active:scale-95 group/btn-old"
+          >
+            Starší články
           </Link>
         </div>
       </div>
