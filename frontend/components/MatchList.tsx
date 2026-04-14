@@ -105,22 +105,23 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
               <div className="text-2xl md:text-3xl font-black text-yellow-400 tracking-tight flex items-center gap-4 text-center">
                 <ClientDate dateString={nextMatch.Date} format="full" />
               </div>
-              <p className="text-blue-100/40 mt-3 font-bold tracking-[0.3em] uppercase text-[9px]">U nás na hřišti ve Višňové</p>
+              <div className="flex items-center gap-2 mt-3">
+                <p className="text-blue-100/40 font-bold tracking-[0.3em] uppercase text-[9px]">U nás na hřišti ve Višňové</p>
+                {/* Map Link Icon */}
+                <a 
+                  href="https://www.google.com/maps/place/TJ+JISKRA+Vi%C5%A1%C5%88ov%C3%A1/@50.9677064,15.0254143,209m/data=!3m1!1e3!4m6!3m5!1s0x4709272b3c6f9069:0xa4417acd5b0e0ba!8m2!3d50.9676599!4d15.0251961!16s%2Fg%2F11tj9ngxjg?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title="Zobrazit na mapě"
+                  className="p-1.5 md:p-2.5 bg-white/10 hover:bg-yellow-400 hover:text-blue-950 rounded-lg md:rounded-xl transition-all duration-300 border border-white/10 group/map shadow-lg md:absolute md:bottom-1 md:right-14"
+                >
+                  <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </a>
+              </div>
             </div>
-
-            {/* Map Link Icon */}
-            <a 
-              href="https://www.google.com/maps/place/TJ+JISKRA+Vi%C5%A1%C5%88ov%C3%A1/@50.9677064,15.0254143,209m/data=!3m1!1e3!4m6!3m5!1s0x4709272b3c6f9069:0xa4417acd5b0e0ba!8m2!3d50.9676599!4d15.0251961!16s%2Fg%2F11tj9ngxjg?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              title="Zobrazit na mapě"
-              className="absolute bottom-4 right-8 md:bottom-1 md:right-14 p-2.5 bg-white/10 hover:bg-yellow-400 hover:text-blue-950 rounded-xl transition-all duration-300 border border-white/10 group/map shadow-lg"
-            >
-              <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-            </a>
           </div>
         </div>
       )}
