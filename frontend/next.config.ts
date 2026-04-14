@@ -14,6 +14,16 @@ const nextConfig: NextConfig = {
         hostname: "127.0.0.1",
         port: "1337",
         pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "visnova-frontend-production.up.railway.app",
+        pathname: "/uploads/**",
       }
     ],
   },

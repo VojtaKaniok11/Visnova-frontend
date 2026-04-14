@@ -37,13 +37,13 @@ export async function fetchAPI(path: string, urlParamsObject: Record<string, str
  */
 export function getStrapiMedia(media: any) {
   if (!media) return null;
-  
+
   // Handle both single object and array (for multiple: true fields)
   const mediaItem = Array.isArray(media) ? media[0] : media;
   const backendUrl = mediaItem?.url;
-  
+
   if (!backendUrl) return null;
 
-  // Exact formula from user:
-  return backendUrl.startsWith('/') ? 'http://localhost:1337' + backendUrl : backendUrl;
+  // Opraveno pro produkci: použije se STRAPI_URL místo natvrdo napsaného localhostu
+  return backendUrl.startsWith('/') ? `${STRAPI_URL}${backendUrl}` : backendUrl;
 }
