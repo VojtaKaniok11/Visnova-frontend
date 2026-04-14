@@ -1,6 +1,7 @@
 import { fetchAPI, getStrapiMedia } from '@/lib/strapi';
 import Image from 'next/image';
 import Link from 'next/link';
+import ClientDate from '@/components/ClientDate';
 
 export const revalidate = 60;
 
@@ -101,7 +102,7 @@ function ArticleCard({ article }: { article: Article }) {
       <div className="p-10 flex-1 flex flex-col">
         <div className="text-sm text-blue-700 font-black tracking-widest uppercase mb-4 flex items-center gap-2">
           <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
-          {new Date(article.createdAt).toLocaleDateString('cs-CZ')}
+          <ClientDate dateString={article.createdAt} format="date" />
         </div>
         
         <h3 className="text-2xl font-black text-blue-900 mb-5 leading-tight group-hover:text-blue-700 transition-colors">

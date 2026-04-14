@@ -1,4 +1,5 @@
 import { fetchAPI } from '@/lib/strapi';
+import ClientDate from '@/components/ClientDate';
 
 export const revalidate = 60;
 
@@ -74,14 +75,14 @@ export default async function RozpisPage() {
 
                         <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-tighter text-slate-400">
                           <div className="flex gap-2">
-                            <span className="text-blue-900">{matchDate.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'numeric' })}</span>
-                            <span>{matchDate.toLocaleDateString('cs-CZ', { weekday: 'short' }).toUpperCase()}</span>
+                            <ClientDate dateString={match.Date} format="short-date" className="text-blue-900" />
+                            <ClientDate dateString={match.Date} format="short-weekday" />
                             <span className={`px-1.5 py-0.5 rounded-sm ml-2 ${match.IsHomeGame ? 'bg-blue-900 text-yellow-400' : 'bg-slate-200 text-slate-500'}`}>
                               {match.IsHomeGame ? 'DOMA' : 'VENKU'}
                             </span>
                           </div>
                           <span className={`${match.Score ? 'bg-blue-900 text-yellow-400' : 'bg-white text-blue-900'} px-2 py-0.5 rounded shadow-sm font-black`}>
-                            {match.Score || matchDate.toLocaleTimeString('cs-CZ', { hour: '2-digit', minute: '2-digit' })}
+                            {match.Score || <ClientDate dateString={match.Date} format="time" />}
                           </span>
                         </div>
                         <div className="text-sm font-bold text-slate-800 leading-tight pr-4">

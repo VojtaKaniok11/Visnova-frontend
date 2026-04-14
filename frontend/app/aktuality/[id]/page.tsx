@@ -1,6 +1,7 @@
 import { fetchAPI, getStrapiMedia } from '@/lib/strapi';
 import Image from 'next/image';
 import Link from 'next/link';
+import ClientDate from '@/components/ClientDate';
 
 interface ContentChild {
   text: string;
@@ -89,7 +90,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
             <div className="absolute bottom-10 left-10 right-10">
               <div className="text-yellow-400 font-black tracking-widest uppercase mb-4 text-sm drop-shadow-lg flex items-center gap-2">
                 <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
-                {new Date(article.createdAt).toLocaleDateString('cs-CZ')}
+                <ClientDate dateString={article.createdAt} format="date" />
               </div>
               <h1 className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tight drop-shadow-xl">
                 {article.Title}

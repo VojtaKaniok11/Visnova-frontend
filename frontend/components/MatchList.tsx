@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import ClientDate from './ClientDate';
 
 interface Match {
   id: number;
@@ -102,13 +103,7 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
             
             <div className="mt-16 pt-10 border-t border-white/5 flex flex-col items-center">
               <div className="text-2xl md:text-3xl font-black text-yellow-400 tracking-tight flex items-center gap-4 text-center">
-                {new Date(nextMatch.Date).toLocaleDateString('cs-CZ', {
-                  weekday: 'long', 
-                  day: 'numeric', 
-                  month: 'long', 
-                  hour: '2-digit', 
-                  minute: '2-digit'
-                })}
+                <ClientDate dateString={nextMatch.Date} format="full" />
               </div>
               <p className="text-blue-100/40 mt-3 font-bold tracking-[0.3em] uppercase text-[9px]">U nás na hřišti ve Višňové</p>
             </div>
@@ -159,7 +154,7 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
                     </span>
                   </div>
                   <div className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em]">
-                     {new Date(match.Date).toLocaleDateString('cs-CZ')}
+                     <ClientDate dateString={match.Date} format="date" />
                   </div>
                 </div>
                 
