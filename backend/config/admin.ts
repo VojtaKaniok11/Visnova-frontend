@@ -21,4 +21,4 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Admin => 
   },
 });
 
-export default config;
+export default config; 
