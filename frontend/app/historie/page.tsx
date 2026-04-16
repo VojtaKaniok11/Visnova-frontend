@@ -159,8 +159,8 @@ export default function HistoriePage() {
             <div className="mt-20 pt-12 border-t border-slate-100 flex justify-center">
               <button 
                 onClick={() => {
-                  setActiveTab('soucasnost');
                   window.scrollTo(0, 0);
+                  setActiveTab('soucasnost');
                 }}
                 className="px-8 py-4 bg-slate-100 text-slate-900 font-bold rounded-xl transition-colors shadow-sm cursor-pointer"
               >
@@ -290,8 +290,8 @@ export default function HistoriePage() {
             <div className="mt-20 pt-12 border-t border-slate-100 flex justify-center">
               <button 
                 onClick={() => {
-                  setActiveTab('historie');
                   window.scrollTo(0, 0);
+                  setActiveTab('historie');
                 }}
                 className="px-8 py-4 bg-slate-100 text-slate-900 font-bold rounded-xl transition-colors shadow-sm cursor-pointer"
               >
