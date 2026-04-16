@@ -109,26 +109,112 @@ export default async function Home() {
             <div className="w-20 h-1.5 bg-yellow-400 mx-auto rounded-full shadow-sm"></div>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-x-16 sm:gap-x-20 md:gap-x-24 gap-y-8 sm:gap-y-10 md:gap-y-12 items-center">
+          <div className="flex flex-wrap justify-center gap-x-8 sm:gap-x-16 md:gap-x-24 gap-y-8 sm:gap-y-10 items-center px-2">
             {[
-              "autodily.webp", "bw.jpg", "cis.jpg", "Denso-Logo.png", "Fačr.png",
-              "juta_logo.png",
-              "liberecky_kraj.webp", "LOGO-CUS.png", "louda_auto.png",
-              "Narodni-sportovni-agentura_logo-rgb - kopie.png", "stavebniny-zilka.jpg",
-              "volosin.jpg", "zelezarstvi.jpg"
-            ].map((logo, i) => (
-              <div 
-                key={i} 
-                className="w-40 sm:w-52 md:w-64 h-12 sm:h-16 md:h-20 relative"
-              >
+              { logo: "autodily.webp", url: "https://autodilyvazka.cz/" }, 
+              { logo: "bw.jpg", url: "https://bowling-frydlant.cz/" }, 
+              { logo: "cis.jpg", url: "https://cis.de/cz/" }, 
+              { logo: "Denso-Logo.png", url: "https://denso.cz/" }, 
+              { logo: "Fačr.png", url: "https://www.fotbal.cz/facr/" },
+              { logo: "juta_logo.png", url: "https://www.juta.cz/" },
+              { logo: "liberecky_kraj.webp", url: "https://www.kraj-lbc.cz/" }, 
+              { logo: "LOGO-CUS.png", url: "https://www.cuscz.cz/" }, 
+              { logo: "louda_auto.png", url: "https://autolouda.cz/koupit_vuz?vyrobce=BYD&auta-nova=True&auta-predvadeci=True&pocet-na-stranu=20&utm_source=google&utm_medium=cpc&utm_campaign=ALW_GA_NV_BYD_Obecn%C3%A9_PMAX_AKV_CI&utm_term=&utm_content=&gad_source=1&gad_campaignid=23337028003&gbraid=0AAAABAI7NM-mAWBdElkirsL8Yn0HBY2YR&gclid=Cj0KCQjwkYLPBhC3ARIsAIyHi3RUuq8rl8ZDRnBmubPIQjm6W-ax5fqSdZJU0uSQSajQ02XGwW7oipYaAqYnEALw_wcB" },
+              { logo: "Narodni-sportovni-agentura_logo-rgb - kopie.png", url: "https://nsa.gov.cz/" }, 
+              { logo: "stavebniny-zilka.jpg", url: "https://www.zivefirmy.cz/stavebniny-zilka_f422117" },
+              { logo: "volosin.jpg", url: "https://www.autoservis-volosin.cz/" }, 
+              { logo: "zelezarstvi.jpg", url: "https://www.firmy.cz/detail/2234914-zelezarstvi-jozef-culaga-frydlant.html" }
+            ].map((partner, i) => {
+              const imageContent = (
                 <Image 
-                  src={`/${logo}`}
-                  alt={`Partner ${logo}`}
+                  src={`/${partner.logo}`}
+                  alt={`Partner ${partner.logo}`}
                   fill
                   className="object-contain"
                 />
+              );
+
+              return partner.url ? (
+                <a 
+                  key={i} 
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-24 sm:w-40 md:w-52 lg:w-64 h-8 sm:h-12 md:h-16 lg:h-20 relative hover:scale-105 hover:brightness-110 transition-all cursor-pointer block"
+                >
+                  {imageContent}
+                </a>
+              ) : (
+                <div 
+                  key={i} 
+                  className="w-24 sm:w-40 md:w-52 lg:w-64 h-8 sm:h-12 md:h-16 lg:h-20 relative"
+                >
+                  {imageContent}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Table of Subsidies */}
+          <div className="mt-24 max-w-5xl mx-auto flex flex-col items-center">
+            <div className="text-center mb-10 w-full">
+              <h3 className="text-2xl sm:text-3xl font-black text-blue-900 mb-2">Finanční podpora TJ JISKRA Višňová, z.s. v roce 2025</h3>
+              <p className="text-slate-500 font-bold uppercase tracking-wider text-xs sm:text-sm">Informace pro rodiče, zákonné zástupce, členy</p>
+            </div>
+            
+            <div className="bg-white rounded-[2rem] shadow-md border border-slate-200 overflow-hidden w-full">
+              <div className="bg-blue-900 border-b-4 border-yellow-400 py-4 px-6 text-center">
+                <h4 className="font-black text-white text-lg sm:text-xl tracking-[0.2em] uppercase">Dotační projekty – 2025</h4>
               </div>
-            ))}
+              
+              <div className="overflow-x-auto pb-2 -mb-2">
+                <table className="w-full text-left min-w-[550px] md:min-w-full">
+                  <thead>
+                    <tr className="bg-slate-50/80 border-b-2 border-slate-200 uppercase text-[10px] sm:text-xs font-black text-slate-500 tracking-wider">
+                      <th className="py-3 px-4 sm:px-8">Organizace</th>
+                      <th className="py-3 px-4 sm:px-8 text-right">Dotace (Kč)</th>
+                      <th className="py-3 px-4 sm:px-8">Č. rozhodnutí</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 text-slate-700 font-medium text-sm sm:text-lg">
+                    <tr className="hover:bg-blue-50/50 transition-colors">
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 font-black text-blue-950">Národní sportovní agentura</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-right whitespace-nowrap font-bold text-slate-800">353 200</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-slate-500 text-xs sm:text-base">NSA-05200/2025/2508</td>
+                    </tr>
+                    <tr className="hover:bg-blue-50/50 transition-colors">
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 font-black text-blue-950">Liberecký kraj – Program 4.23</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-right whitespace-nowrap font-bold text-slate-800">47 000</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-slate-500 text-xs sm:text-base">OLP/01176/2025</td>
+                    </tr>
+                    <tr className="hover:bg-blue-50/50 transition-colors">
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 font-black text-blue-950">Obec Višňová – ID</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-right whitespace-nowrap font-bold text-slate-800">136 000</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-slate-500 text-xs sm:text-base">ID 4/2025</td>
+                    </tr>
+                    <tr className="hover:bg-blue-50/50 transition-colors">
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 font-black text-blue-950">Obec Višňová – ID</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-right whitespace-nowrap font-bold text-slate-800">2 074</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-slate-500 text-xs sm:text-base">ID 20/2025</td>
+                    </tr>
+                    <tr className="hover:bg-blue-50/50 transition-colors">
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 font-black text-blue-950">DENSO Liberec</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-right whitespace-nowrap font-bold text-slate-800">9 000</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-slate-400 text-xs sm:text-base text-center">-</td>
+                    </tr>
+                    <tr className="bg-slate-50/50 hover:bg-blue-50/50 transition-colors">
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 font-black text-blue-950">Liberecký kraj – Program 4.26</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-right whitespace-nowrap font-bold text-slate-800">131 431</td>
+                      <td className="py-3 sm:py-4 px-4 sm:px-8 text-slate-500 text-xs sm:text-base">OLP/01539/2025</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div className="bg-slate-100/50 p-4 sm:px-8 sm:py-5 text-base text-slate-600 border-t-2 border-slate-200">
+                <p className="leading-relaxed"><strong className="text-blue-950 font-black">Program 4.26: Prostředky použity na činnost mládeže:</strong> fotbalové míče, tréninkové pomůcky, sportovní vybavení - oblečení s potiskem, fotbalová soustředění, pronájem sportovišť, doprava, výdaje za energie.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

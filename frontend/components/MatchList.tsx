@@ -83,7 +83,7 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4 md:gap-8">
               <div className="text-center md:text-right flex flex-col">
                 <span className="text-blue-200/40 font-black text-[10px] uppercase tracking-widest mb-3">Domácí</span>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.1]">
+                <h3 className="text-3xl sm:text-4xl md:text-3xl lg:text-5xl font-black tracking-tight leading-[1.1]">
                   {nextMatch.IsHomeGame ? 'Višňová' : nextMatch.Opponent}
                 </h3>
               </div>
@@ -95,7 +95,7 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
               
               <div className="text-center md:text-left flex flex-col">
                 <span className="text-blue-200/40 font-black text-[10px] uppercase tracking-widest mb-3">Hosté</span>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-[1.1]">
+                <h3 className="text-3xl sm:text-4xl md:text-3xl lg:text-5xl font-black tracking-tight leading-[1.1]">
                   {!nextMatch.IsHomeGame ? 'Višňová' : nextMatch.Opponent}
                 </h3>
               </div>
@@ -137,30 +137,30 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
           <div className="grid grid-cols-1 gap-6">
             {pastResults.map((match) => (
               <div key={match.id} className="bg-white rounded-[2.5rem] p-8 shadow-sm hover:shadow-2xl transition-all duration-500 grid grid-cols-1 md:grid-cols-3 items-center border border-slate-100 group hover:-translate-y-1">
-                <div className="text-center md:text-left font-black text-lg text-slate-900">
-                  <span className={match.IsHomeGame ? "text-blue-900 bg-blue-50 px-3 py-1 rounded-lg" : ""}>
+                <div className="text-center md:text-left font-black text-lg text-black">
+                  <span className={match.IsHomeGame ? "text-blue-950 bg-blue-50/80 px-3 py-1 rounded-lg border border-blue-100" : ""}>
                      {match.IsHomeGame ? 'Višňová' : match.Opponent}
                   </span>
                 </div>
                 
                 <div className="flex flex-col items-center gap-3 py-6 md:py-0">
                   {match.Team && (
-                    <span className="px-3 py-1 bg-yellow-400 rounded-full text-blue-900 text-[10px] font-black shadow-sm">
+                    <span className="px-3 py-1 bg-yellow-400 rounded-full text-blue-950 text-[10px] font-black shadow-sm">
                       {match.Team}-TÝM
                     </span>
                   )}
                   <div className="px-12 py-5 bg-slate-50 rounded-[1.5rem] flex flex-col items-center justify-center border border-slate-100 group-hover:bg-blue-900 group-hover:text-yellow-400 transition-all duration-300 min-w-[170px] shadow-sm group-hover:shadow-blue-900/30">
-                    <span className="text-3xl font-black leading-none tracking-tight">
+                    <span className="text-3xl font-black leading-none tracking-tight text-black group-hover:text-yellow-400">
                       {match.Score || '- : -'}
                     </span>
                   </div>
-                  <div className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em]">
+                  <div className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em]">
                      <ClientDate dateString={match.Date} format="date" />
                   </div>
                 </div>
                 
-                <div className="text-center md:text-right font-black text-lg text-slate-900">
-                  <span className={!match.IsHomeGame ? "text-blue-900 bg-blue-50 px-3 py-1 rounded-lg" : ""}>
+                <div className="text-center md:text-right font-black text-lg text-black">
+                  <span className={!match.IsHomeGame ? "text-blue-950 bg-blue-50/80 px-3 py-1 rounded-lg border border-blue-100" : ""}>
                      {!match.IsHomeGame ? 'Višňová' : match.Opponent}
                   </span>
                 </div>

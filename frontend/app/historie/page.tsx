@@ -19,8 +19,8 @@ export default function HistoriePage() {
 
         {/* Historie Section */}
         {activeTab === 'historie' && (
-          <div className="bg-white rounded-3xl shadow-sm p-8 md:p-16 border border-slate-100 mx-[50px] animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+          <div className="bg-white rounded-3xl shadow-sm p-5 sm:p-8 md:p-16 border border-slate-100 mx-0 md:mx-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-12">
               
               {/* Section 1: Poválečné období */}
               <div className="space-y-4">
@@ -160,7 +160,7 @@ export default function HistoriePage() {
               <button 
                 onClick={() => {
                   setActiveTab('soucasnost');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  window.scrollTo(0, 0);
                 }}
                 className="px-8 py-4 bg-slate-100 text-slate-900 font-bold rounded-xl transition-colors shadow-sm cursor-pointer"
               >
@@ -172,8 +172,8 @@ export default function HistoriePage() {
 
         {/* Současnost Section */}
         {activeTab === 'soucasnost' && (
-          <div className="bg-white rounded-3xl shadow-sm p-8 md:p-16 border border-slate-100 mx-[50px] animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+          <div className="bg-white rounded-3xl shadow-sm p-5 sm:p-8 md:p-16 border border-slate-100 mx-0 md:mx-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-12">
               
               {/* Section 7: Rok 2006 */}
               <div className="space-y-4">
@@ -291,7 +291,7 @@ export default function HistoriePage() {
               <button 
                 onClick={() => {
                   setActiveTab('historie');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  window.scrollTo(0, 0);
                 }}
                 className="px-8 py-4 bg-slate-100 text-slate-900 font-bold rounded-xl transition-colors shadow-sm cursor-pointer"
               >

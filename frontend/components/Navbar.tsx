@@ -86,10 +86,10 @@ const Navbar = () => {
             className="relative w-12 h-12 flex items-center justify-center text-white hover:text-yellow-400 transition-colors group"
             aria-label="Toggle menu"
           >
-            <div className={`w-8 h-8 flex flex-col justify-center items-center transition-all duration-300`}>
-              <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-0.5' : '-translate-y-1'}`}></span>
-              <span className={`block w-6 h-0.5 bg-current transition-all duration-300 my-1 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-              <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-0.5' : 'translate-y-1'}`}></span>
+            <div className="w-8 h-8 relative flex items-center justify-center">
+              <span className={`absolute block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${isOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'}`}></span>
+              <span className={`absolute block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+              <span className={`absolute block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${isOpen ? '-rotate-45 translate-y-0' : 'translate-y-2'}`}></span>
             </div>
           </button>
         </div>
