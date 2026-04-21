@@ -98,6 +98,158 @@ export default async function Home() {
 
         </div>
       </section>
+
+      {/* Contacts Section */}
+      <section id="kontakty" className="py-24 bg-slate-50 relative overflow-hidden">
+        {/* Background Decorative Element */}
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-96 h-96 bg-yellow-100/20 rounded-full blur-3xl -z-10"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-black text-blue-900 mb-6 uppercase tracking-tighter">
+              Kontakty
+            </h2>
+            <div className="w-20 h-1.5 bg-yellow-400 mx-auto rounded-full shadow-sm"></div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            
+            {/* Left Column: Management & Committee */}
+            <div className="lg:col-span-1 space-y-10">
+              {/* Management Cards */}
+              <div className="space-y-6">
+                <h3 className="text-2xl font-black text-blue-950 flex items-center gap-3">
+                  <span className="w-8 h-1 bg-yellow-400 rounded-full"></span>
+                  Vedení spolku
+                </h3>
+                
+                {[
+                  { role: "Předseda spolku", name: "Milan Melka", tel: "723 231 909", email: "milanmelka@seznam.cz" },
+                  { role: "Místopředseda spolku", name: "Filip Šolta", tel: "775 590 284", email: "filip.solta@seznam.cz" }
+                ].map((item, idx) => (
+                  <div key={idx} className="bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <p className="text-xs font-black text-yellow-600 uppercase tracking-widest mb-1">{item.role}</p>
+                    <p className="text-xl font-black text-blue-900 mb-4">{item.name}</p>
+                    <div className="space-y-2">
+                      <a href={`tel:${item.tel.replace(/\s/g, '')}`} className="flex items-center gap-3 text-slate-600 hover:text-blue-700 transition-colors font-semibold">
+                        <svg className="w-4 h-4 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        {item.tel}
+                      </a>
+                      <a href={`mailto:${item.email}`} className="flex items-center gap-3 text-slate-600 hover:text-blue-700 transition-colors font-semibold break-all text-sm">
+                        <svg className="w-4 h-4 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        {item.email}
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Committee Members */}
+              <div className="bg-blue-900 p-8 rounded-[2.5rem] shadow-xl text-white">
+                <h3 className="text-xl font-black mb-6 uppercase tracking-wider flex items-center gap-3">
+                  <span className="w-6 h-1 bg-yellow-400 rounded-full"></span>
+                  Výkonný výbor
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {["Petr Soukup", "Jaroslav Soukup", "Pavel Kutílek", "Jaroslav Marek", "Milan Mazánek", "Darek Rücker", "Jiří Stejskal", "Filip Marek", "Milan Pavlů"].map((name, idx) => (
+                    <span key={idx} className="bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold border border-white/5 hover:bg-white/20 transition-colors cursor-default">
+                      {name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Coaches Table */}
+            <div className="lg:col-span-2">
+              <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-200 overflow-hidden h-full flex flex-col">
+                <div className="bg-blue-900 border-b-4 border-yellow-400 py-6 px-8 flex justify-between items-center">
+                  <h3 className="font-black text-white text-xl tracking-[0.1em] uppercase">Trenéři a vedoucí</h3>
+                  <div className="hidden sm:block px-4 py-1 bg-yellow-400 text-blue-900 rounded-full text-[10px] font-black tracking-widest uppercase">Mužstva</div>
+                </div>
+                
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-black text-slate-500 uppercase tracking-widest">
+                        <th className="py-4 px-8">Kategorie / Tým</th>
+                        <th className="py-4 px-8">Jméno a Role</th>
+                        <th className="py-4 px-8 text-right">Kontakt</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {[
+                        { cat: "A tým muži", people: [
+                          { name: "Milan Melka", role: "Trenér", tel: "723 231 909", email: "milanmelka@seznam.cz" },
+                          { name: "Jaroslav Soukup", role: "Vedoucí", tel: "", email: "" }
+                        ]},
+                        { cat: "B tým muži", people: [
+                          { name: "Milan Mazánek", role: "Trenér", tel: "722 960 332", email: "ital57@seznam.cz" },
+                          { name: "Patrik Ležovič", role: "Vedoucí", tel: "", email: "" }
+                        ]},
+                        { cat: "C tým muži", people: [
+                          { name: "Skalický Bedřich", role: "Trenér", tel: "774 630 730", email: "Skalicky.Bedrich@seznam.cz" },
+                          { name: "Filip Marek", role: "Trenér", tel: "702 104 926", email: "filipmarekm3@seznam.cz" }
+                        ]},
+                        { cat: "Kategorie U15", people: [
+                          { name: "Jindřich Lengál", role: "Trenér", tel: "601 201 666", email: "lengaljindra@seznam.cz" },
+                          { name: "Michal Pařík", role: "Trenér", tel: "791 928 029", email: "michalparik@seznam.cz" }
+                        ]},
+                        { cat: "Kategorie U13", people: [
+                          { name: "Milan Pavlů", role: "Trenér", tel: "739 772 778", email: "milan.pavlu90@gmail.com" }
+                        ]},
+                        { cat: "Kategorie U11", people: [
+                          { name: "Milan Pavlů", role: "Trenér", tel: "739 772 778", email: "milan.pavlu90@gmail.com" }
+                        ]},
+                        { cat: "Kategorie U9", people: [
+                          { name: "Pavel Kutílek", role: "Trenér", tel: "607 270 697", email: "paku2612@seznam.cz" }
+                        ]},
+                        { cat: "U7 + předpřípravka", people: [
+                          { name: "Karina Šoltová", role: "Trenérka", tel: "727 805 551", email: "karina.soltova@seznam.cz" }
+                        ]}
+                      ].map((group, gIdx) => (
+                        <tr key={gIdx} className="hover:bg-blue-50/30 transition-colors">
+                          <td className="py-6 px-8 align-top">
+                            <span className="block font-black text-blue-950 text-base">{group.cat}</span>
+                          </td>
+                          <td className="py-6 px-8 align-top">
+                            {group.people.map((p, pIdx) => (
+                              <div key={pIdx} className={pIdx > 0 ? "mt-4 border-t border-slate-100 pt-4" : ""}>
+                                <div className="flex items-center gap-2">
+                                  <span className="font-bold text-slate-900">{p.name}</span>
+                                  <span className="text-[10px] font-black text-yellow-600 uppercase bg-yellow-50 px-2 py-0.5 rounded-md">{p.role}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </td>
+                          <td className="py-6 px-8 align-top text-right">
+                            {group.people.map((p, pIdx) => (
+                              <div key={pIdx} className={pIdx > 0 ? "mt-4 pt-4 h-[41px]" : ""}>
+                                {p.tel && (
+                                  <div className="flex flex-col items-end gap-1">
+                                    <a href={`tel:${p.tel.replace(/\s/g, '')}`} className="text-sm font-bold text-blue-800 hover:underline">{p.tel}</a>
+                                    <a href={`mailto:${p.email}`} className="text-[10px] text-slate-500 hover:text-blue-600 transition-colors font-medium lowercase truncate max-w-[150px]">{p.email}</a>
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="bg-slate-50 p-6 mt-auto border-t border-slate-200">
+                  <p className="text-xs text-slate-500 font-medium italic">V případě zájmu o nábor do mládežnických kategorií prosím kontaktujte přímo daného trenéra.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Sponsors Section */}
       <section className="py-16 bg-white border-t border-slate-100 overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,7 +261,7 @@ export default async function Home() {
             <div className="w-20 h-1.5 bg-yellow-400 mx-auto rounded-full shadow-sm"></div>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-x-8 sm:gap-x-16 md:gap-x-24 gap-y-8 sm:gap-y-10 items-center px-2">
+          <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-12 md:gap-x-20 gap-y-10 sm:gap-y-16 items-center px-4">
             {[
               { logo: "autodily.webp", url: "https://autodilyvazka.cz/" }, 
               { logo: "bw.jpg", url: "https://bowling-frydlant.cz/" }, 
@@ -140,14 +292,14 @@ export default async function Home() {
                   href={partner.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-24 sm:w-40 md:w-52 lg:w-64 h-8 sm:h-12 md:h-16 lg:h-20 relative hover:scale-105 hover:brightness-110 transition-all cursor-pointer block"
+                  className="w-40 sm:w-52 md:w-64 lg:w-80 h-14 sm:h-20 md:h-24 lg:h-32 relative hover:scale-105 hover:brightness-110 transition-all cursor-pointer block"
                 >
                   {imageContent}
                 </a>
               ) : (
                 <div 
                   key={i} 
-                  className="w-24 sm:w-40 md:w-52 lg:w-64 h-8 sm:h-12 md:h-16 lg:h-20 relative"
+                  className="w-40 sm:w-52 md:w-64 lg:w-80 h-14 sm:h-20 md:h-24 lg:h-32 relative"
                 >
                   {imageContent}
                 </div>
