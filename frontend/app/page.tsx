@@ -261,7 +261,7 @@ export default async function Home() {
             <div className="w-20 h-1.5 bg-yellow-400 mx-auto rounded-full shadow-sm"></div>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-12 md:gap-x-20 gap-y-10 sm:gap-y-16 items-center px-4">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center items-center gap-x-6 sm:gap-x-12 md:gap-x-20 gap-y-10 sm:gap-y-16 px-2 sm:px-8">
             {[
               { logo: "autodily.webp", url: "https://autodilyvazka.cz/" }, 
               { logo: "bw.jpg", url: "https://bowling-frydlant.cz/" }, 
@@ -292,14 +292,14 @@ export default async function Home() {
                   href={partner.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-40 sm:w-52 md:w-64 lg:w-80 h-14 sm:h-20 md:h-24 lg:h-32 relative hover:scale-105 hover:brightness-110 transition-all cursor-pointer block"
+                  className="w-full sm:w-52 md:w-64 lg:w-80 h-16 sm:h-20 md:h-24 lg:h-32 relative hover:scale-105 hover:brightness-110 transition-all cursor-pointer block"
                 >
                   {imageContent}
                 </a>
               ) : (
                 <div 
                   key={i} 
-                  className="w-40 sm:w-52 md:w-64 lg:w-80 h-14 sm:h-20 md:h-24 lg:h-32 relative"
+                  className="w-full sm:w-52 md:w-64 lg:w-80 h-16 sm:h-20 md:h-24 lg:h-32 relative"
                 >
                   {imageContent}
                 </div>
