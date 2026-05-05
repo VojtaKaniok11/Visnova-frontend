@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <header className="fixed w-full z-50 h-[92px]">
       {/* Glossy Backdrop with Team Colors */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 border-b-4 border-yellow-500 shadow-2xl backdrop-blur-md opacity-95"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 border-b-4 border-yellow-500 shadow-2xl"></div>
       
       {/* Decorative inner glow */}
       <div className="absolute inset-0 bg-white/5 pointer-events-none"></div>

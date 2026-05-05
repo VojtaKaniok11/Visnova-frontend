@@ -129,7 +129,7 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
       {/* PAST RESULTS SECTION */}
       {(show === 'past' || show === 'both') && (
         <div className="space-y-12">
-          <h2 className="text-3xl font-black text-blue-900 tracking-tight flex items-center gap-4">
+          <h2 className="text-2xl font-black text-blue-900 tracking-tight flex items-center gap-6 uppercase">
             <span className="w-2 h-8 bg-blue-900 rounded-full"></span>
             Poslední výsledky
           </h2>

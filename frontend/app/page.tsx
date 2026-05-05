@@ -84,7 +84,7 @@ export default async function Home() {
 
             {/* Column 2: First Article */}
             <div id="aktuality-top" className="lg:col-span-1">
-              <h2 className="text-4xl font-black text-blue-900 mb-12 flex items-center gap-6">
+              <h2 className="text-2xl font-black text-blue-900 mb-12 flex items-center gap-6 uppercase">
                 <span className="w-14 h-3 bg-yellow-400 rounded-full inline-block shadow-md"></span>
                 Aktuality
               </h2>
