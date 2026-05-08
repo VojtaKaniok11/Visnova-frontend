@@ -26,9 +26,9 @@ export default async function RozpisPage() {
   }
 
   const teams = [
-    { id: 'A', name: 'A-tým', description: 'Krajský přebor' },
-    { id: 'B', name: 'B-tým', description: 'I.B třída' },
-    { id: 'C', name: 'C-tým', description: 'III. třída' },
+    { id: 'A', name: 'A-Tým', description: 'Krajský přebor' },
+    { id: 'B', name: 'B-Tým', description: 'I.B třída' },
+    { id: 'C', name: 'C-Tým', description: 'III. třída' },
   ];
 
   const now = new Date();

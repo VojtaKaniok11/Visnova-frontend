@@ -54,7 +54,7 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
     <div className="space-y-16">
       {/* NEXT MATCH SECTION */}
       {nextMatch && (show === 'upcoming' || show === 'both') && (
-        <div className="bg-blue-950 rounded-[2.5rem] p-10 md:p-14 text-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group border border-white/10">
+        <div className="bg-blue-950 rounded-[2rem] p-10 md:p-14 text-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group border border-white/10">
           
           {/* Background Image Layer */}
           <div className="absolute inset-0 opacity-40 mix-blend-overlay">
@@ -67,8 +67,8 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
             />
           </div>
 
-          {/* Gradient Overlay for Readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-950/90 via-blue-900/60 to-blue-950/90 pointer-events-none"></div>
+          {/* Gradient Overlay for Readability - Darker edges, lighter center */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/30 via-blue-950/85 to-blue-950 pointer-events-none"></div>
           
           {/* Decorative atmospheric effects */}
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] group-hover:bg-blue-500/20 transition-colors duration-1000"></div>
@@ -83,7 +83,7 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4 md:gap-8">
               <div className="text-center md:text-right flex flex-col">
                 <span className="text-blue-200/40 font-black text-[10px] uppercase tracking-widest mb-3">Domácí</span>
-                <h3 className="text-3xl sm:text-4xl md:text-3xl lg:text-5xl font-black tracking-tight leading-[1.1]">
+                <h3 className="text-3xl sm:text-4xl md:text-3xl lg:text-6xl font-black italic tracking-tighter leading-[1.1] uppercase">
                   {nextMatch.IsHomeGame ? 'Višňová' : nextMatch.Opponent}
                 </h3>
               </div>
@@ -95,7 +95,7 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
               
               <div className="text-center md:text-left flex flex-col">
                 <span className="text-blue-200/40 font-black text-[10px] uppercase tracking-widest mb-3">Hosté</span>
-                <h3 className="text-3xl sm:text-4xl md:text-3xl lg:text-5xl font-black tracking-tight leading-[1.1]">
+                <h3 className="text-3xl sm:text-4xl md:text-3xl lg:text-6xl font-black italic tracking-tighter leading-[1.1] uppercase">
                   {!nextMatch.IsHomeGame ? 'Višňová' : nextMatch.Opponent}
                 </h3>
               </div>
@@ -105,8 +105,10 @@ const MatchList: React.FC<MatchListProps> = ({ matches, show = 'both' }) => {
               <div className="text-2xl md:text-3xl font-black text-yellow-400 tracking-tight flex items-center gap-4 text-center">
                 <ClientDate dateString={nextMatch.Date} format="full" />
               </div>
-              <div className="flex items-center gap-2 mt-3">
-                <p className="text-blue-100/40 font-bold tracking-[0.3em] uppercase text-[9px]">U nás na hřišti ve Višňové</p>
+              <div className="flex flex-col items-center gap-4 mt-6">
+                <div className="px-5 py-1.5 bg-yellow-400/10 border border-yellow-400/20 rounded-full">
+                  <p className="text-yellow-400 font-black tracking-[0.25em] uppercase text-[11px]">Hrajeme doma ve Višňové</p>
+                </div>
                 {/* Map Link Icon */}
                 <a 
                   href="https://www.google.com/maps/place/TJ+JISKRA+Vi%C5%A1%C5%88ov%C3%A1/@50.9677064,15.0254143,209m/data=!3m1!1e3!4m6!3m5!1s0x4709272b3c6f9069:0xa4417acd5b0e0ba!8m2!3d50.9676599!4d15.0251961!16s%2Fg%2F11tj9ngxjg?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D" 

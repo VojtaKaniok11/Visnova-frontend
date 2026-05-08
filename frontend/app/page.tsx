@@ -65,6 +65,57 @@ export default async function Home() {
 
   return (
     <div>
+      {/* Hero Section */}
+      <section id="hero" className="relative w-full h-[70vh] sm:h-[80vh] lg:h-[85vh] -mt-[92px] pt-[92px] overflow-hidden">
+        {/* Background Team Photo */}
+        <Image
+          src="/uvodni_foto.jpg"
+          alt="Týmová fotografie TJ Jiskra Višňová"
+          fill
+          className="object-cover object-[center_40%]"
+          priority
+          quality={90}
+        />
+        {/* Dark Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20 z-10" />
+        {/* Subtle Blue Tint */}
+        <div className="absolute inset-0 bg-blue-950/20 z-10" />
+
+        {/* CTA Content – Centered */}
+        <div className="relative z-20 flex flex-col items-center justify-center h-full">
+          <a
+            href="#kontakty"
+            id="hero-cta"
+            className="
+              group relative inline-flex items-center gap-2.5
+              px-7 py-3.5 sm:px-10 sm:py-4
+              bg-white/10 backdrop-blur-sm hover:bg-white/20
+              text-white font-black text-base sm:text-lg
+              uppercase tracking-[0.15em]
+              rounded-xl
+              shadow-[0_4px_24px_rgba(0,0,0,0.2)]
+              hover:shadow-[0_8px_32px_rgba(30,58,138,0.35)]
+              hover:scale-105 active:scale-95
+              transition-all duration-300 ease-out
+              border border-blue-400/60 hover:border-blue-300
+            "
+          >
+            <span>Přidej se k nám</span>
+            <svg
+              className="w-5 h-5 sm:w-6 sm:h-6 transform group-hover:translate-y-1 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </a>
+        </div>
+
+        {/* Bottom Fade into page */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 to-transparent z-20" />
+      </section>
+
       {/* Main Content Areas */}
       <section id="zapas" className="pt-20 pb-40 bg-slate-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,7 +170,7 @@ export default async function Home() {
             <div className="lg:col-span-1 space-y-10">
               {/* Management Cards */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-black text-blue-950 flex items-center gap-3">
+                <h3 className="text-2xl font-black text-blue-950 flex items-center gap-3 uppercase">
                   <span className="w-8 h-1 bg-yellow-400 rounded-full"></span>
                   Vedení spolku
                 </h3>
