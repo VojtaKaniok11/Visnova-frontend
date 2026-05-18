@@ -69,10 +69,10 @@ export default async function Home() {
       <section id="hero" className="relative w-full h-[70vh] sm:h-[80vh] lg:h-[85vh] -mt-[92px] pt-[92px] overflow-hidden">
         {/* Background Team Photo */}
         <Image
-          src="/uvodni_foto.jpg"
+          src="/IMG_9864.JPG"
           alt="Týmová fotografie TJ Jiskra Višňová"
           fill
-          className="object-cover object-[center_40%]"
+          className="object-cover object-[center_65%]"
           priority
           quality={90}
         />

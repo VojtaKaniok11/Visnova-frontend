@@ -22,7 +22,7 @@ export default function RootLayout({
         <Navbar />
 
         {/* Main Content */}
-        <main className="flex-grow pt-[92px]">
+        <main className="flex-grow pt-24">
           {children}
         </main>
 
