@@ -1,10 +1,14 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function HistoriePage() {
   const [activeTab, setActiveTab] = useState<'historie' | 'soucasnost'>('historie');
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [activeTab]);
 
   return (
     <div className="bg-slate-50 min-h-screen py-12">
@@ -158,10 +162,7 @@ export default function HistoriePage() {
             {/* Link to Present */}
             <div className="mt-20 pt-12 border-t border-slate-100 flex justify-center">
               <button 
-                onClick={() => {
-                  window.scrollTo(0, 0);
-                  setActiveTab('soucasnost');
-                }}
+                onClick={() => setActiveTab('soucasnost')}
                 className="px-8 py-4 bg-slate-100 text-slate-900 font-bold rounded-xl transition-colors shadow-sm cursor-pointer"
               >
                 Přejít na současnost
@@ -289,10 +290,7 @@ export default function HistoriePage() {
             {/* Back to History */}
             <div className="mt-20 pt-12 border-t border-slate-100 flex justify-center">
               <button 
-                onClick={() => {
-                  window.scrollTo(0, 0);
-                  setActiveTab('historie');
-                }}
+                onClick={() => setActiveTab('historie')}
                 className="px-8 py-4 bg-slate-100 text-slate-900 font-bold rounded-xl transition-colors shadow-sm cursor-pointer"
               >
                 Zpět do historie

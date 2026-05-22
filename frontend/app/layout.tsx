@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Navbar from '../components/Navbar';
 import Link from 'next/link';
@@ -7,6 +7,10 @@ import Image from 'next/image';
 export const metadata: Metadata = {
   title: 'Jiskra Višňová',
   description: 'Oficiální stránky fotbalového klubu Jiskra Višňová',
+};
+
+export const viewport: Viewport = {
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({
