@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '../components/Navbar';
 import Link from 'next/link';
@@ -9,10 +9,6 @@ export const metadata: Metadata = {
   description: 'Oficiální stránky fotbalového klubu Jiskra Višňová',
 };
 
-export const viewport: Viewport = {
-  viewportFit: 'cover',
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -20,6 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="cs" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </head>
       <body className="bg-slate-50 text-slate-900 font-sans flex flex-col min-h-screen" suppressHydrationWarning>
         
         {/* Navbar */}
