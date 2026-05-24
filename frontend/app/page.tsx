@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
+import { SmoothAnchor } from '@/components/SmoothAnchor';
 import { MatchesSectionUpcoming, MatchesSectionPast } from '@/components/MatchesSection';
 import { ArticlesSection } from '@/components/ArticlesSection';
 import { MatchesLoadingSkeleton } from '@/components/MatchesSkeleton';
@@ -29,7 +30,7 @@ export default function Home() {
 
         {/* CTA Content – Centered */}
         <div className="relative z-20 flex flex-col items-center justify-center h-full">
-          <a
+          <SmoothAnchor
             href="#kontakty"
             id="hero-cta"
             className="
@@ -55,7 +56,7 @@ export default function Home() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
-          </a>
+          </SmoothAnchor>
         </div>
 
         {/* Bottom Fade into page */}
