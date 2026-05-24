@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section id="hero" className="relative w-full h-[70vh] sm:h-[80vh] lg:h-[85vh] -mt-[92px] pt-[92px] overflow-hidden">
+      <section id="hero" className="relative w-full h-[70vh] sm:h-[80vh] lg:h-[85vh] -mt-[92px] pt-[92px] overflow-hidden bg-gradient-to-b from-slate-900 to-blue-950">
         {/* Background Team Photo */}
         <Image
           src="/IMG_9864.JPG"
