@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { Suspense } from 'react';
 import { SmoothAnchor } from '@/components/SmoothAnchor';
 import { MatchesSectionUpcoming, MatchesSectionPast } from '@/components/MatchesSection';
@@ -29,7 +28,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-blue-950/20 z-10" />
 
         {/* CTA Content – Centered */}
-        <div className="relative z-20 flex flex-col items-center justify-center h-full">
+        <div className="relative z-20 flex flex-col items-center justify-center h-full gap-3">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white text-center drop-shadow-lg">
+            TJ Jiskra Višňová
+          </h1>
           <SmoothAnchor
             href="#kontakty"
             id="hero-cta"
@@ -60,7 +62,7 @@ export default function Home() {
         </div>
 
         {/* Bottom Fade into page */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 to-transparent z-20" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-slate-50 to-transparent z-20" />
       </section>
 
       {/* Main Content Areas */}
@@ -274,6 +276,7 @@ export default function Home() {
                   alt={`Partner ${partner.logo}`}
                   fill
                   className="object-contain"
+                  loading="lazy"
                 />
               );
 

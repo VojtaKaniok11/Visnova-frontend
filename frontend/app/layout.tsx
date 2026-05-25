@@ -5,8 +5,22 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Jiskra Višňová',
-  description: 'Oficiální stránky fotbalového klubu Jiskra Višňová',
+  title: 'TJ Jiskra Višňová | Fotbalový klub',
+  description: 'Oficiální web fotbalového klubu TJ Jiskra Višňová. Fotbal, zápasy, mládežnické kategorie U7-U15, A/B/C tým. Aktuality a rozvrh utkání.',
+  openGraph: {
+    title: 'TJ Jiskra Višňová | Fotbalový klub',
+    description: 'Oficiální web fotbalového klubu TJ Jiskra Višňová. Fotbal, zápasy, mládežnické kategorie U7-U15, A/B/C tým. Aktuality a rozvrh utkání.',
+    type: 'website',
+    url: 'https://jiskravisnova.cz',
+    images: [
+      {
+        url: '/IMG_9864.JPG',
+        width: 1200,
+        height: 630,
+        alt: 'Týmová fotografie TJ Jiskra Višňová',
+      }
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -18,6 +32,36 @@ export default function RootLayout({
     <html lang="cs" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <link rel="canonical" href="https://jiskravisnova.cz" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'SportsOrganization',
+              name: 'TJ Jiskra Višňová',
+              description: 'Fotbalový klub TJ Jiskra Višňová, z.s.',
+              url: 'https://jiskravisnova.cz',
+              logo: 'https://jiskravisnova.cz/logo.png',
+              image: 'https://jiskravisnova.cz/IMG_9864.JPG',
+              email: 'jiskra.visnova@seznam.cz',
+              telephone: '+420775590284',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Višňová 184',
+                postalCode: '464 01',
+                addressCountry: 'CZ'
+              },
+              sameAs: [
+                'https://www.facebook.com/jiskravisnova1946',
+                'https://www.instagram.com/jiskravisnova/',
+                'https://jiskra1946.rajce.idnes.cz/'
+              ],
+              sport: 'Football'
+            })
+          }}
+        />
+
       </head>
       <body className="bg-slate-50 text-slate-900 font-sans flex flex-col min-h-screen" suppressHydrationWarning>
         
