@@ -32,7 +32,9 @@ const Navbar = () => {
     >
       <div className='max-w-5xl mx-auto relative'>
         {/* Main Navbar Container - Floating Island Style */}
-        <div className='relative flex items-center justify-between rounded-2xl overflow-hidden bg-blue-950 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] py-1'>
+        <div className={`relative flex items-center justify-between rounded-2xl overflow-hidden ${
+          isHomepage ? 'bg-blue-950 border-white/10' : 'bg-white border-slate-200'
+        } border shadow-[0_20px_50px_rgba(0,0,0,0.3)] py-1`}>
           {/* Subtle Glow Background */}
           <div className='absolute inset-0 bg-gradient-to-r from-blue-900/40 via-blue-800/40 to-blue-900/40'></div>
 
@@ -40,7 +42,9 @@ const Navbar = () => {
           <div className='absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400/50 to-transparent'></div>
 
           {/* Desktop Navigation */}
-          <div className='hidden md:flex items-center justify-between w-full px-6 relative z-10'>
+          <div className={`hidden md:flex items-center justify-between w-full px-6 relative z-10 ${
+            isHomepage ? 'text-white' : 'text-slate-900'
+          }`}>
             {/* Left Links */}
             <div className='flex items-center gap-x-6 flex-1 justify-end pr-3'>
               {navLinks.slice(0, 2).map((link) => (
@@ -81,7 +85,9 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Navigation Header */}
-          <div className='md:hidden flex justify-between items-center w-full px-4 relative z-10 py-1'>
+          <div className={`md:hidden flex justify-between items-center w-full px-4 relative z-10 py-1 ${
+            isHomepage ? 'text-white' : 'text-slate-900'
+          }`}>
             <Link
               href='/'
               className='relative h-12 w-12 transform transition-transform hover:scale-105 active:scale-95'
@@ -120,14 +126,19 @@ const Navbar = () => {
           className={`md:hidden absolute top-full left-0 right-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] 
             ${isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}
         >
-          <div className='bg-blue-950 border-t border-white/10 shadow-2xl p-4 space-y-1'>
+          <div className={`${
+            isHomepage ? 'bg-blue-950 border-white/10' : 'bg-white border-slate-200'
+          } border-t shadow-2xl p-4 space-y-1`}>
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={`flex items-center justify-between px-5 py-4 rounded-xl transition-all duration-300 group
-                  ${pathname === link.href ? 'bg-white/10 text-yellow-400' : 'text-white/80 hover:bg-white/5 hover:text-white'}`}
+                  ${pathname === link.href
+                    ? isHomepage ? 'bg-white/10 text-yellow-400' : 'bg-slate-100 text-yellow-500'
+                    : isHomepage ? 'text-white/80 hover:bg-white/5 hover:text-white' : 'text-slate-600 hover:bg-slate-100/50 hover:text-slate-900'
+                  }`}
               >
                 <span className='font-bold tracking-widest uppercase text-base'>
                   {link.name}
