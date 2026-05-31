@@ -11,7 +11,10 @@ export default function HistoriePage() {
   }, [activeTab]);
 
   return (
-    <div className="bg-slate-50 min-h-screen py-12">
+    <div className="bg-slate-50 min-h-screen py-12 relative">
+      {/* Gradient transition under navbar (mobile) */}
+      <div className="md:hidden h-6 bg-gradient-to-b from-slate-50/0 to-slate-50 fixed top-[72px] left-0 right-0 z-40 pointer-events-none"></div>
+
       <div className="max-w-[95rem] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}

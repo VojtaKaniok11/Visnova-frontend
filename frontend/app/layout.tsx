@@ -67,7 +67,7 @@ export default function RootLayout({
 
       </head>
       <body className="bg-slate-50 text-slate-900 font-sans flex flex-col min-h-screen" suppressHydrationWarning>
-        
+
         {/* Navbar */}
         <Navbar />
 
