@@ -263,7 +263,7 @@ export default function Home() {
               { logo: "Fačr.png", url: "https://www.fotbal.cz/facr/" },
               { logo: "juta_logo.png", url: "https://www.juta.cz/" },
               { logo: "liberecky_kraj.webp", url: "https://www.kraj-lbc.cz/" },
-              { logo: "LOGO-CUS.png", url: "https://www.cuscz.cz/" },
+              { logo: "cus_logo_nove.png", url: "https://www.cuscz.cz/" },
               { logo: "louda_auto.png", url: "https://autolouda.cz/koupit_vuz?vyrobce=BYD&auta-nova=True&auta-predvadeci=True&pocet-na-stranu=20&utm_source=google&utm_medium=cpc&utm_campaign=ALW_GA_NV_BYD_Obecn%C3%A9_PMAX_AKV_CI&utm_term=&utm_content=&gad_source=1&gad_campaignid=23337028003&gbraid=0AAAABAI7NM-mAWBdElkirsL8Yn0HBY2YR&gclid=Cj0KCQjwkYLPBhC3ARIsAIyHi3RUuq8rl8ZDRnBmubPIQjm6W-ax5fqSdZJU0uSQSajQ02XGwW7oipYaAqYnEALw_wcB" },
               { logo: "Narodni-sportovni-agentura_logo-rgb - kopie.png", url: "https://nsa.gov.cz/" },
               { logo: "stavebniny-zilka.jpg", url: "https://www.zivefirmy.cz/stavebniny-zilka_f422117" },
