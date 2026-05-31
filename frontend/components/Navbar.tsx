@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isHomepage = pathname === '/';
 
   const navLinks = [
     { name: 'Domů', href: '/' },
@@ -17,7 +18,11 @@ const Navbar = () => {
 
   return (
     <header
-      className='fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 bg-slate-50/70 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none'
+      className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 ${
+        isHomepage
+          ? 'bg-transparent'
+          : 'bg-slate-50/70 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none'
+      }`}
       style={{
         paddingTop: 'max(0.75rem, env(safe-area-inset-top))',
         willChange: 'transform',

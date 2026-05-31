@@ -37,10 +37,7 @@ export default async function AktualityPage() {
   }
 
   return (
-    <div className="bg-slate-50 min-h-screen py-16 relative">
-      {/* Gradient transition under navbar (mobile) */}
-      <div className="md:hidden h-6 bg-gradient-to-b from-slate-50/0 to-slate-50 fixed top-[72px] left-0 right-0 z-40 pointer-events-none"></div>
-
+    <div className="bg-slate-50 min-h-screen py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-20">
