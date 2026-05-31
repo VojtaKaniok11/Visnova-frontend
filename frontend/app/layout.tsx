@@ -7,6 +7,9 @@ import Image from 'next/image';
 export const metadata: Metadata = {
   title: 'TJ Jiskra Višňová | Fotbalový klub',
   description: 'Oficiální web fotbalového klubu TJ Jiskra Višňová. Fotbal, zápasy, mládežnické kategorie U7-U15, A/B/C tým. Aktuality a rozvrh utkání.',
+  icons: {
+    icon: '/favicon-96x96.png',
+  },
   openGraph: {
     title: 'TJ Jiskra Višňová | Fotbalový klub',
     description: 'Oficiální web fotbalového klubu TJ Jiskra Višňová. Fotbal, zápasy, mládežnické kategorie U7-U15, A/B/C tým. Aktuality a rozvrh utkání.',

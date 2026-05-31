@@ -43,9 +43,6 @@ export default async function RozpisPage() {
             Rozpis Zápasů
             <div className="w-10 h-2 bg-yellow-400 rounded-full"></div>
           </h1>
-          <p className="text-lg text-slate-600 font-medium mt-6 opacity-70">
-            Aktuální přehled všech jarních zápasů
-          </p>
         </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
