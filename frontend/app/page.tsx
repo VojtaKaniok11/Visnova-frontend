@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section id="hero" className="relative w-full h-[70vh] sm:h-[80vh] lg:h-[85vh] -mt-[92px] pt-[92px] overflow-hidden bg-gradient-to-b from-slate-900 to-blue-950">
+      <section id="hero" className="relative w-full h-[70vh] sm:h-[80vh] lg:h-[85vh] -mt-24 pt-[92px] overflow-hidden bg-gradient-to-b from-slate-900 to-blue-950">
         {/* Background Team Photo */}
         <Image
           src="/IMG_9864.JPG"
@@ -32,6 +32,9 @@ export default function Home() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white text-center drop-shadow-lg">
             TJ Jiskra Višňová
           </h1>
+          <p className="text-sm sm:text-base font-semibold text-white/60 tracking-[0.25em] uppercase text-center">
+            Fotbalový klub · Višňová · od roku 1946
+          </p>
           <SmoothAnchor
             href="#kontakty"
             id="hero-cta"
